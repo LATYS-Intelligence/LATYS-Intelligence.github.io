@@ -27,17 +27,19 @@ const frenchUrl = new URL(getLocalizedPath(route, "fr"), Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="application-name" content="LATYS" />
     <meta name="theme-color" content="#071448" />
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/assets/latysLogoOriginal.svg" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="en-CA" href={englishUrl} />
     <link rel="alternate" hreflang="fr-CA" href={frenchUrl} />
     <link rel="alternate" hreflang="x-default" href={englishUrl} />
-    <title>{title}</title>
+    <title>LATYS</title>
   </head>
   <body>
     <a class="skip-link" href="#main-content">{copy.skipToContent}</a>
