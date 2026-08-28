@@ -1,0 +1,482 @@
+---
+import type { FocusAtGlanceCopy } from "../i18n/pages/solutions";
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+
+interface Props {
+  copy: FocusAtGlanceCopy;
+}
+
+const { copy } = Astro.props;
+const [industrial, baseStation, smartBuildings, stadium, warehouse] =
+  copy.endpoints;
+const headingBrand = "LATYS FOCUS™";
+---
+
+<Section id="focus-at-a-glance" tone="paper">
+  <Container size="wide">
+    <header class="section-heading">
+      <h2>
+        <span class="heading-brand" style="color: #ff9e67;">
+          {headingBrand}
+        </span>{" "}{copy.headingSuffix}
+      </h2>
+      <p>{copy.introduction}</p>
+    </header>
+
+    <div class="visualization">
+      <ul class="sr-only">
+        {
+          copy.endpoints.map((endpoint) => (
+            <li>
+              {endpoint.subtitle
+                ? `${endpoint.title} — ${endpoint.subtitle}`
+                : endpoint.title}
+            </li>
+          ))
+        }
+      </ul>
+
+      <svg
+        class="network network-desktop"
+        viewBox="0 0 1200 640"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <g class="signals">
+          <line class="signal-base" x1="520" y1="300" x2="290" y2="150" />
+          <line class="signal-base" x1="600" y1="285" x2="600" y2="160" />
+          <line class="signal-base" x1="680" y1="300" x2="910" y2="150" />
+          <line class="signal-base" x1="520" y1="360" x2="330" y2="510" />
+          <line class="signal-base" x1="680" y1="360" x2="870" y2="510" />
+
+          <line
+            class="signal-pulse"
+            x1="520"
+            y1="300"
+            x2="290"
+            y2="150"
+            pathLength="1"
+            style="--delay: -0.25s"
+          />
+          <line
+            class="signal-pulse"
+            x1="600"
+            y1="285"
+            x2="600"
+            y2="160"
+            pathLength="1"
+            style="--delay: -1.3s"
+          />
+          <line
+            class="signal-pulse"
+            x1="680"
+            y1="300"
+            x2="910"
+            y2="150"
+            pathLength="1"
+            style="--delay: -2.1s"
+          />
+          <line
+            class="signal-pulse"
+            x1="520"
+            y1="360"
+            x2="330"
+            y2="510"
+            pathLength="1"
+            style="--delay: -0.85s"
+          />
+          <line
+            class="signal-pulse"
+            x1="680"
+            y1="360"
+            x2="870"
+            y2="510"
+            pathLength="1"
+            style="--delay: -1.7s"
+          />
+        </g>
+
+        <g class="endpoint">
+          <rect class="node-panel" x="40" y="70" width="250" height="160" rx="18" />
+          <image href="/assets/factory.svg" x="93" y="88" width="64" height="64" />
+          <image href="/assets/robotArm.svg" x="169" y="88" width="64" height="64" />
+          <text class="node-title" x="165" y="184">{industrial.title}</text>
+          <text class="node-subtitle" x="165" y="207">{industrial.subtitle}</text>
+        </g>
+
+        <g class="endpoint">
+          <rect class="node-panel" x="475" y="0" width="250" height="160" rx="18" />
+          <image href="/assets/baseStation.svg" x="565" y="16" width="70" height="70" />
+          <text class="node-title" x="600" y="116">{baseStation.title}</text>
+          <text class="node-subtitle" x="600" y="139">{baseStation.subtitle}</text>
+        </g>
+
+        <g class="endpoint">
+          <rect class="node-panel" x="910" y="70" width="250" height="160" rx="18" />
+          <image href="/assets/city.svg" x="985" y="82" width="100" height="84" />
+          <text class="node-title" x="1035" y="199">{smartBuildings.title}</text>
+        </g>
+
+        <g class="endpoint">
+          <rect class="node-panel" x="80" y="430" width="250" height="160" rx="18" />
+          <image href="/assets/warehouse.svg" x="170" y="448" width="70" height="70" />
+          <text class="node-title" x="205" y="546">{warehouse.title}</text>
+          <text class="node-subtitle" x="205" y="569">{warehouse.subtitle}</text>
+        </g>
+
+        <g class="endpoint">
+          <rect class="node-panel" x="870" y="430" width="250" height="160" rx="18" />
+          <image href="/assets/stadium.svg" x="960" y="448" width="70" height="70" />
+          <text class="node-title" x="995" y="546">{stadium.title}</text>
+          <text class="node-subtitle" x="995" y="569">{stadium.subtitle}</text>
+        </g>
+
+        <g class="hub">
+          <rect class="hub-glow" x="490" y="265" width="220" height="120" rx="24" />
+          <rect class="hub-panel" x="500" y="275" width="200" height="100" rx="20" />
+          <image
+            href="/assets/latysFOCUSlogo.svg"
+            x="520"
+            y="298"
+            width="160"
+            height="54"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </g>
+      </svg>
+
+      <svg
+        class="network network-mobile"
+        viewBox="0 0 320 1050"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <g class="signals">
+          <line class="signal-base" x1="80" y1="110" x2="20" y2="240" />
+          <line class="signal-base" x1="120" y1="110" x2="300" y2="420" />
+          <line class="signal-base" x1="160" y1="110" x2="20" y2="600" />
+          <line class="signal-base" x1="200" y1="110" x2="300" y2="780" />
+          <line class="signal-base" x1="240" y1="110" x2="20" y2="960" />
+
+          <line
+            class="signal-pulse"
+            x1="80"
+            y1="110"
+            x2="20"
+            y2="240"
+            pathLength="1"
+            style="--delay: -0.25s"
+          />
+          <line
+            class="signal-pulse"
+            x1="120"
+            y1="110"
+            x2="300"
+            y2="420"
+            pathLength="1"
+            style="--delay: -1.3s"
+          />
+          <line
+            class="signal-pulse"
+            x1="160"
+            y1="110"
+            x2="20"
+            y2="600"
+            pathLength="1"
+            style="--delay: -2.1s"
+          />
+          <line
+            class="signal-pulse"
+            x1="200"
+            y1="110"
+            x2="300"
+            y2="780"
+            pathLength="1"
+            style="--delay: -0.85s"
+          />
+          <line
+            class="signal-pulse"
+            x1="240"
+            y1="110"
+            x2="20"
+            y2="960"
+            pathLength="1"
+            style="--delay: -1.7s"
+          />
+        </g>
+
+        <g class="hub">
+          <rect class="hub-glow" x="32" y="18" width="256" height="104" rx="21" />
+          <rect class="hub-panel" x="40" y="26" width="240" height="88" rx="18" />
+          <image
+            href="/assets/latysFOCUSlogo.svg"
+            x="62"
+            y="47"
+            width="196"
+            height="46"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </g>
+
+        <g class="endpoint endpoint-mobile">
+          <rect class="node-panel" x="20" y="170" width="280" height="140" rx="16" />
+          <image href="/assets/factory.svg" x="92" y="184" width="54" height="54" />
+          <image href="/assets/robotArm.svg" x="174" y="184" width="54" height="54" />
+          <text class="node-title" x="160" y="271">{industrial.title}</text>
+          <text class="node-subtitle" x="160" y="294">{industrial.subtitle}</text>
+        </g>
+
+        <g class="endpoint endpoint-mobile">
+          <rect class="node-panel" x="20" y="350" width="280" height="140" rx="16" />
+          <image href="/assets/baseStation.svg" x="133" y="362" width="54" height="54" />
+          <text class="node-title" x="160" y="451">{baseStation.title}</text>
+          <text class="node-subtitle" x="160" y="474">{baseStation.subtitle}</text>
+        </g>
+
+        <g class="endpoint endpoint-mobile">
+          <rect class="node-panel" x="20" y="530" width="280" height="140" rx="16" />
+          <image href="/assets/city.svg" x="115" y="540" width="90" height="75" />
+          <text class="node-title" x="160" y="643">{smartBuildings.title}</text>
+        </g>
+
+        <g class="endpoint endpoint-mobile">
+          <rect class="node-panel" x="20" y="710" width="280" height="140" rx="16" />
+          <image href="/assets/warehouse.svg" x="133" y="722" width="54" height="54" />
+          <text class="node-title" x="160" y="811">{warehouse.title}</text>
+          <text class="node-subtitle" x="160" y="834">{warehouse.subtitle}</text>
+        </g>
+
+        <g class="endpoint endpoint-mobile">
+          <rect class="node-panel" x="20" y="890" width="280" height="140" rx="16" />
+          <image href="/assets/stadium.svg" x="133" y="902" width="54" height="54" />
+          <text class="node-title" x="160" y="991">{stadium.title}</text>
+          <text class="node-subtitle" x="160" y="1014">{stadium.subtitle}</text>
+        </g>
+      </svg>
+
+      <dl class="metrics">
+        {
+          copy.metrics.map((metric) => (
+            <div>
+              <dt>{metric.value}</dt>
+              <dd>{metric.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .section-heading {
+    margin-block-end: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .section-heading h2 {
+    max-inline-size: 18ch;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(2.4rem, 5vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+  }
+
+  .heading-brand {
+    color: #ff9e67;
+  }
+
+  .section-heading p {
+    max-inline-size: 54rem;
+    margin: 1.5rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.75;
+  }
+
+  .visualization {
+    padding: clamp(1rem, 3vw, 2.5rem);
+    overflow: hidden;
+    border: 0.0625rem solid rgb(16 31 90 / 10%);
+    border-radius: var(--radius-medium);
+    background:
+      radial-gradient(circle at 50% 46%, rgb(255 158 103 / 9%), transparent 29%),
+      rgb(255 255 255 / 72%);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .network {
+    inline-size: 100%;
+    block-size: auto;
+    overflow: visible;
+  }
+
+  .network-mobile {
+    display: none;
+  }
+
+  .signal-base,
+  .signal-pulse {
+    fill: none;
+    stroke: var(--color-accent);
+    vector-effect: non-scaling-stroke;
+  }
+
+  .signal-base {
+    stroke-width: 1.5;
+    opacity: 0.5;
+  }
+
+  .signal-pulse {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 0.045 0.455;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 0.25rem rgb(255 158 103 / 80%));
+    animation: signal-flow 3.1s linear infinite;
+    animation-delay: var(--delay);
+  }
+
+  .node-panel {
+    fill: var(--color-purple);
+    stroke: rgb(255 158 103 / 38%);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .node-title,
+  .node-subtitle {
+    font-family: var(--font-sans);
+    text-anchor: middle;
+  }
+
+  .node-title {
+    fill: var(--color-on-dark);
+    font-size: 16px;
+    font-weight: 720;
+    letter-spacing: -0.02em;
+  }
+
+  .node-subtitle {
+    fill: rgb(247 249 255 / 62%);
+    font-size: 12px;
+    font-weight: 520;
+  }
+
+  .hub-glow {
+    fill: rgb(255 158 103 / 18%);
+    filter: blur(0.5rem);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hub-breathe 3.6s ease-in-out infinite;
+  }
+
+  .hub-panel {
+    fill: var(--color-accent);
+    filter: drop-shadow(0 0.8rem 1.4rem rgb(255 158 103 / 25%));
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin: clamp(1rem, 3vw, 2rem) 0 0;
+    padding: clamp(2rem, 5vw, 3rem) 0 0;
+    border-block-start: 0.0625rem solid rgb(16 31 90 / 15%);
+  }
+
+  .metrics div {
+    min-inline-size: 0;
+  }
+
+  .metrics dt {
+    margin-block-end: 0.45rem;
+    color: var(--color-accent);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  .metrics dd {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .sr-only {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @keyframes signal-flow {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes hub-breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.96);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .network-desktop {
+      display: none;
+    }
+
+    .network-mobile {
+      display: block;
+    }
+
+    .metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem 1rem;
+    }
+  }
+
+  @media (max-width: 29.99rem) {
+    .visualization {
+      margin-inline: -0.25rem;
+      padding-inline: 0.5rem;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-pulse {
+      display: none;
+      animation: none;
+    }
+
+    .hub-glow {
+      animation: none;
+      opacity: 0.75;
+      transform: none;
+    }
+  }
+</style>

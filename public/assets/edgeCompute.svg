@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" shape-rendering="geometricPrecision">
+<g fill="none" stroke="#f7f9ff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- Cloud -->
+  <path d="
+    M20,140
+    C20,80 68,32 128,32
+    C150,32 170,38 187,50
+    C204,20 236,0 273,0
+    C328,0 373,42 378,96
+    C382,95 386,95 390,95
+    C432,95 466,129 466,171
+    C466,205 444,234 413,244
+  "/>
+  <path d="M20,140 C20,180 46,214 82,228"/>
+  <path d="M118,236 C126,238 135,240 145,240" />
+  <path d="M367,240 C385,240 402,236 417,228"/>
+
+  <!-- Gear teeth -->
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(0.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(45.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(90.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(135.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(180.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(225.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(270.0) translate(0,-83.0)" />
+  <rect x="-11.0" y="-13.0" width="22" height="26" rx="6" transform="translate(256,232) rotate(315.0) translate(0,-83.0)" />
+
+  <!-- Gear ring -->
+  <circle cx="256" cy="232" r="66"/>
+
+  <!-- Inner spinner/hub arc -->
+  <path d="M292,262 A48,48 0 1 1 300,206" stroke-linecap="round"/>
+
+  <!-- Stem from gear down to bottom node -->
+  <path d="M256,298 L256,440"/>
+  <circle cx="256" cy="462" r="20"/>
+
+  <!-- Left branch -->
+  <path d="M198,278 L150,326 L108,326 L70,364"/>
+  <circle cx="48" cy="386" r="20"/>
+
+  <!-- Left-inner branch -->
+  <path d="M212,300 L212,362 L172,402"/>
+  <circle cx="150" cy="424" r="20"/>
+
+  <!-- Right branch -->
+  <path d="M314,278 L362,326 L404,326 L442,364"/>
+  <circle cx="464" cy="386" r="20"/>
+
+  <!-- Right-inner branch -->
+  <path d="M300,300 L300,362 L340,402"/>
+  <circle cx="362" cy="424" r="20"/>
+
+</g>
+</svg>

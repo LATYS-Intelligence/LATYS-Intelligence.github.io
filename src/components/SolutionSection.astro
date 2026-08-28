@@ -1,0 +1,181 @@
+---
+import BrandText from "./BrandText.astro";
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+import SolutionNetworkAnimation from "./SolutionNetworkAnimation.astro";
+import {
+  frontmatter as englishSolution,
+} from "../content/home/solution.en.md";
+import {
+  frontmatter as frenchSolution,
+} from "../content/home/solution.fr.md";
+import type { Locale } from "../i18n/config";
+
+interface SolutionPoint {
+  title: string;
+  body: string;
+}
+
+interface SolutionContent {
+  eyebrow: string;
+  heading: string;
+  subtitle: string;
+  points: SolutionPoint[];
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = {
+  en: englishSolution as SolutionContent,
+  fr: frenchSolution as SolutionContent,
+} satisfies Record<Locale, SolutionContent>;
+const copy = content[locale];
+---
+
+<Section id="solution" tone="default" spacing="spacious">
+  <Container size="wide">
+    <div class="solution-section">
+      <header class="section-header">
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h2><BrandText text={copy.heading} /></h2>
+        <p class="subtitle">{copy.subtitle}</p>
+      </header>
+
+      <div class="solution-layout">
+        <div class="animation-slot">
+          <SolutionNetworkAnimation />
+        </div>
+
+        <ol class="solution-points">
+          {copy.points.map((point, index) => (
+            <li>
+              <span class="point-number">0{index + 1}</span>
+              <div>
+                <h3>{point.title}</h3>
+                <p>{point.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .solution-section {
+    position: relative;
+  }
+
+  .section-header {
+    max-inline-size: 62rem;
+    margin-block-end: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-block-end: 1rem;
+    color: var(--color-purple);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    inline-size: 1.5rem;
+    block-size: 0.125rem;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  h2 {
+    max-inline-size: 16ch;
+    margin-block-end: 1.5rem;
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    letter-spacing: -0.05em;
+    line-height: 1.04;
+  }
+
+  .subtitle {
+    max-inline-size: 55rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+  }
+
+  .solution-layout {
+    display: grid;
+    gap: clamp(3rem, 8vw, 6rem);
+    align-items: stretch;
+  }
+
+  .animation-slot {
+    position: relative;
+    display: grid;
+    min-block-size: clamp(20rem, 62vw, 32rem);
+    place-items: center;
+    overflow: hidden;
+    padding: clamp(0.25rem, 1vw, 0.75rem);
+    border: 0.0625rem solid rgb(7 20 72 / 18%);
+    border-radius: var(--radius-medium);
+    background-color: var(--color-primary, #071448);
+    box-shadow: 0 1.5rem 4rem rgb(7 20 72 / 14%);
+  }
+
+  .solution-points {
+    display: grid;
+    align-content: start;
+    margin: 0;
+    padding: 0;
+    border-block-start: 0.0625rem solid var(--color-border);
+    list-style: none;
+  }
+
+  .solution-points li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: clamp(1.5rem, 3vw, 2rem);
+    border-block-end: 0.0625rem solid var(--color-border);
+  }
+
+  .point-number {
+    padding-block-start: 0.25rem;
+    color: var(--color-accent-ink);
+    font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+  }
+
+  .solution-points h3 {
+    margin-block-end: 0.6rem;
+    color: var(--color-purple);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+  }
+
+  .solution-points p {
+    max-inline-size: 34rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 56rem) {
+    .solution-layout {
+      grid-template-columns: minmax(0, 1.05fr) minmax(23rem, 0.95fr);
+    }
+
+    .animation-slot {
+      min-block-size: 32rem;
+    }
+  }
+</style>

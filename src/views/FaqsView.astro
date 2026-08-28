@@ -1,0 +1,123 @@
+---
+import Container from "../components/Container.astro";
+import Section from "../components/Section.astro";
+import type { Locale } from "../i18n/config";
+import { faqsCopy } from "../i18n/pages/faqs";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = faqsCopy[locale];
+---
+
+<SiteLayout
+  locale={locale}
+  route="faqs"
+  title={copy.meta.title}
+  description={copy.meta.description}
+>
+  <Section id="page-intro" tone="contrast" spacing="compact">
+    <Container size="wide">
+      <div class="intro">
+        <h1>{copy.intro.heading}</h1>
+      </div>
+    </Container>
+  </Section>
+
+  <Section id="page-content" tone="default">
+    <Container size="narrow">
+      <div class="faq-list">
+        {copy.items.map((item, index) => (
+          <details>
+            <summary>
+              <span class="question-number">{String(index + 1).padStart(2, "0")}</span>
+              <span>{item.question}</span>
+            </summary>
+            <div class="answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </Container>
+  </Section>
+</SiteLayout>
+
+<style>
+  .intro {
+    max-inline-size: 52rem;
+  }
+
+  .intro h1 {
+    margin: 0;
+  }
+
+  .faq-list {
+    border-block-start: 0.0625rem solid var(--color-border);
+  }
+
+  details {
+    border-block-end: 0.0625rem solid var(--color-border);
+  }
+
+  summary {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 1.5rem;
+    cursor: pointer;
+    font-size: clamp(1.02rem, 2vw, 1.2rem);
+    font-weight: 650;
+    line-height: 1.4;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    grid-column: 2;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin-block-start: -1.8rem;
+    margin-inline-start: auto;
+    color: var(--color-accent-ink);
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 420;
+    line-height: 1;
+    transition: transform var(--transition-fast);
+  }
+
+  details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .question-number {
+    padding-block-start: 0.2rem;
+    color: var(--color-accent-ink);
+    font-size: 0.68rem;
+    font-weight: 760;
+    letter-spacing: 0.1em;
+  }
+
+  .answer {
+    padding: 0 2rem 1.75rem 3rem;
+  }
+
+  .answer p {
+    max-inline-size: 34rem;
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    summary::after {
+      transition: none;
+    }
+  }
+</style>

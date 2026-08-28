@@ -1,0 +1,83 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true"
+focusable="false" shape-rendering="geometricPrecision">
+  <g stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M107 89l46-26 67 39-45 26-68-39Z" />
+    <path d="M107 89l68 39v42l-68-39V89Z" />
+    <path d="M175 128l45-26v42l-45 26" />
+    <path d="M123 116l31 18v25l-31-18v-25Z" />
+
+    <path d="M24 110l29-17 41 24-29 17-41-24Z" />
+    <path d="M24 110l41 24v23l-41-24v-23Z" />
+    <path d="M65 134l29-17 29 17v18l-24 14-34-19v-13Z" />
+    <path d="M94 117v18l17 10" />
+  </g>
+
+  <g stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+opacity="0.6">
+    <path d="M138 125v25M154 134v25" />
+    <path d="M182 139l27-16M182 151l27-16" />
+    <path d="M98 123l15 9v9l-15-9v-9Z" />
+    <path d="M34 119l21 12M34 127l21 12" />
+  </g>
+
+  <g stroke="#f7f9ff" stroke-width="2" fill="none">
+    <ellipse cx="45" cy="145" rx="7" ry="4.5" transform="rotate(30 45 145)" />
+    <ellipse cx="100" cy="162" rx="7" ry="4.5" transform="rotate(-30 100 162)" />
+  </g>
+  <g fill="#f7f9ff">
+    <circle cx="45" cy="145" r="2" />
+    <circle cx="100" cy="162" r="2" />
+  </g>
+</svg> -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" fill="none"
+  shape-rendering="geometricPrecision">
+  <defs>
+    <clipPath id="belowA">
+      <path d="M150 224 L360 345 L360 470 L150 470 Z" />
+    </clipPath>
+    <clipPath id="belowB">
+      <path d="M340 318 L520 422 L520 480 L340 480 Z" />
+    </clipPath>
+  </defs>
+  <g fill="none" stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <g clip-path="url(#belowA)">
+      <ellipse cx="250.4" cy="279.1" rx="25" ry="14.4" transform="rotate(60 275.4 279.1)" />
+      <line x1="249.0" y1="265.4" x2="262.9" y2="257.4" />
+      <line x1="274.0" y1="308.8" x2="287.9" y2="300.8" />
+    </g>
+    <g clip-path="url(#belowB)">
+      <ellipse cx="436.5" cy="372.1" rx="25" ry="14.4" transform="rotate(60 436.5 372.1)" />
+      <line x1="410.1" y1="358.4" x2="424.0" y2="350.4" />
+      <line x1="435.1" y1="401.8" x2="449.0" y2="393.8" />
+    </g>
+    <path
+      d="M287.5 105L448.6 198L448.6 219L510.9 255L510.9 345L448.6 381L386.2 345L386.2 330L381 333L220 240L220 144Z" />
+    <path d="M220 144L381 237" />
+    <path d="M381 237L448.6 198" />
+    <path d="M381 237L381 333" />
+    <path d="M448.6 219L386.2 255" />
+    <path d="M386.2 255L448.6 291" />
+    <path d="M448.6 291L510.9 255" />
+    <path d="M448.6 291L448.6 381" />
+    <path d="M386.2 255L386.2 345" />
+    <path d="M504.4 267.8L455.1 296.3L455.1 332.3L504.4 303.8Z" />
+    <path d="M395.3 269.3L438.2 294L438.2 330L395.3 305.3Z" />
+    <path d="M503.1 325.5L488.8 333.8L488.8 344.3L503.1 336Z" />
+    <path d="M470.6 344.3L456.4 352.5L456.4 363L470.6 354.8Z" />
+    <ellipse cx="261.5" cy="287.1" rx="25" ry="14.4" transform="rotate(60 261.5 287.1)" />
+    <ellipse cx="422.6" cy="380.1" rx="25" ry="14.4" transform="rotate(60 422.6 380.1)" />
+  </g>
+  <g fill="none" stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    transform="translate(520,15) scale(3) translate(-107,-63)">
+    <path d="M107 89l46-26 67 39-45 26-68-39Z" />
+    <path d="M107 89l68 39v42l-68-39V89Z" />
+    <path d="M175 128l45-26v42l-45 26" />
+    <path d="M123 116l31 18v25l-31-18v-25Z" />
+  </g>
+  <g fill="none" stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.6" transform="translate(520,15) scale(3) translate(-107,-63)">
+    <path d="M138 125v25M154 134v25" />
+    <path d="M182 139l27-16M182 151l27-16" />
+  </g>
+</svg>

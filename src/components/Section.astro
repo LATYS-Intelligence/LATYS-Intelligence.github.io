@@ -1,0 +1,62 @@
+---
+interface Props {
+  id?: string;
+  tone?: "default" | "subtle" | "contrast" | "paper" | "purple";
+  spacing?: "compact" | "default" | "spacious";
+}
+
+const {
+  id,
+  tone = "default",
+  spacing = "default",
+} = Astro.props;
+---
+
+<section class="section" id={id} data-tone={tone} data-spacing={spacing}>
+  <slot />
+</section>
+
+<style>
+  .section {
+    position: relative;
+    padding-block: clamp(4.5rem, 9vw, 7.5rem);
+    overflow: clip;
+  }
+
+  .section[data-spacing="compact"] {
+    padding-block: clamp(3.5rem, 7vw, 5.25rem);
+  }
+
+  .section[data-spacing="spacious"] {
+    padding-block: clamp(5.5rem, 11vw, 9rem);
+  }
+
+  .section[data-tone="default"] {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  .section[data-tone="subtle"] {
+    background: var(--color-accent-light);
+    color: var(--color-ink);
+  }
+
+  .section[data-tone="contrast"] {
+    --color-logo: var(--color-on-dark);
+
+    background: var(--color-primary);
+    color: var(--color-on-dark);
+  }
+
+  .section[data-tone="purple"] {
+    --color-logo: var(--color-on-dark);
+
+    background: var(--color-purple);
+    color: var(--color-on-dark);
+  }
+
+  .section[data-tone="paper"] {
+    background: var(--color-accent-light);
+    color: var(--color-ink);
+  }
+</style>

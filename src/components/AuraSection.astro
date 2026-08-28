@@ -1,0 +1,277 @@
+---
+import type { AuraCopy } from "../i18n/pages/solutions";
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+
+interface Props {
+  copy: AuraCopy;
+}
+
+const { copy } = Astro.props;
+---
+
+<Section id="aura" tone="contrast" spacing="spacious">
+  <Container size="wide">
+    <div class="aura-layout">
+      <div class="aura-copy">
+        <div class="aura-logo-lockup">
+          <img
+            class="aura-logo"
+            src="/assets/latysAURAlogo.svg"
+            width="2650"
+            height="700"
+            alt="LATYS AURA™"
+            loading="lazy"
+            decoding="async"
+          />
+          <sup class="logo-trademark" aria-hidden="true">™</sup>
+        </div>
+
+        <h2>
+          <span class="heading-brand" style="color: #ff9e67;">AURA™:</span>{" "}{copy.heading}
+        </h2>
+        <p class="introduction">{copy.introduction}</p>
+
+        <ol class="capability-list">
+          {
+            copy.capabilities.map((capability, index) => (
+              <li>
+                <span class="capability-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3>{capability.title}</h3>
+                  <p>{capability.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <p class="conclusion">{copy.conclusion}</p>
+      </div>
+
+      <figure
+        class="aura-stage"
+        role="img"
+        aria-label={copy.illustrationAlt}
+      >
+        <svg
+          class="aura-composite"
+          viewBox="0 0 96 96"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <image
+            href="/assets/auraSYMBOL.svg"
+            x="0"
+            y="0"
+            width="96"
+            height="96"
+          />
+          <image
+            href="/assets/lineChartData.svg"
+            x="12"
+            y="49"
+            width="20"
+            height="24"
+          />
+          <image
+            href="/assets/graphData.svg"
+            x="30"
+            y="49"
+            width="20"
+            height="24"
+          />
+        </svg>
+      </figure>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .aura-layout {
+    display: grid;
+    gap: clamp(3.5rem, 8vw, 7rem);
+    align-items: start;
+  }
+
+  .aura-copy {
+    min-inline-size: 0;
+  }
+
+  .aura-logo-lockup {
+    display: inline-flex;
+    align-items: flex-start;
+    margin-block-end: clamp(2rem, 5vw, 3.25rem);
+  }
+
+  .aura-logo {
+    flex: none;
+    inline-size: clamp(13rem, 23vw, 18rem);
+    block-size: auto;
+  }
+
+  .logo-trademark {
+    flex: none;
+    margin-block-start: clamp(1rem, 1.9vw, 1.4rem);
+    margin-inline-start: 0.18rem;
+    color: var(--color-on-dark);
+    font-size: clamp(0.55rem, 0.8vw, 0.72rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  h2 {
+    max-inline-size: 11ch;
+    margin: 0;
+    color: var(--color-on-dark);
+    font-size: clamp(2.4rem, 4.8vw, 4.15rem);
+    font-weight: 650;
+    letter-spacing: -0.05em;
+    line-height: 1.03;
+  }
+
+  .heading-brand {
+    color: var(--color-accent);
+  }
+
+  .introduction {
+    max-inline-size: 39rem;
+    margin: clamp(1.5rem, 4vw, 2.25rem) 0 clamp(2.5rem, 6vw, 4rem);
+    color: rgb(247 249 255 / 76%);
+    font-size: clamp(1.03rem, 1.8vw, 1.18rem);
+    line-height: 1.75;
+  }
+
+  .capability-list {
+    margin: 0;
+    padding: 0;
+    border-block-end: 0.0625rem solid rgb(247 249 255 / 14%);
+    list-style: none;
+  }
+
+  .capability-list li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-block: clamp(1.45rem, 3vw, 1.9rem);
+    border-block-start: 0.0625rem solid rgb(247 249 255 / 14%);
+  }
+
+  .capability-number {
+    padding-block-start: 0.2rem;
+    color: var(--color-accent);
+    font-family:
+      ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .capability-list h3 {
+    margin-block-end: 0.65rem;
+    color: var(--color-on-dark);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .capability-list p {
+    max-inline-size: 35rem;
+    margin: 0;
+    color: rgb(247 249 255 / 61%);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .conclusion {
+    max-inline-size: 39rem;
+    margin: clamp(2.25rem, 5vw, 3.5rem) 0 0;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-inline-start: 0.2rem solid var(--color-accent);
+    background: rgb(255 158 103 / 8%);
+    color: var(--color-on-dark);
+    font-size: clamp(1rem, 1.8vw, 1.12rem);
+    font-weight: 620;
+    line-height: 1.65;
+  }
+
+  .aura-stage {
+    position: relative;
+    isolation: isolate;
+    inline-size: 100%;
+    max-inline-size: 40rem;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 0.0625rem solid rgb(236 238 255 / 14%);
+    border-radius: var(--radius-medium);
+    background: rgb(2 9 35 / 34%);
+  }
+
+  .aura-stage::before,
+  .aura-stage::after {
+    position: absolute;
+    z-index: 3;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-color: rgb(255 158 103 / 65%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .aura-stage::before {
+    top: 1.25rem;
+    left: 1.25rem;
+    border-block-start: 0.0625rem solid;
+    border-inline-start: 0.0625rem solid;
+  }
+
+  .aura-stage::after {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    border-block-end: 0.0625rem solid;
+    border-inline-end: 0.0625rem solid;
+  }
+
+  .aura-composite {
+    position: absolute;
+    inset: 10%;
+    inline-size: 80%;
+    block-size: 80%;
+  }
+
+  @media (min-width: 58rem) {
+    .aura-layout {
+      grid-template-columns: minmax(0, 0.94fr) minmax(24rem, 1.06fr);
+    }
+
+    .aura-stage {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .aura-logo-lockup {
+      margin-block-end: 1.75rem;
+    }
+
+    .aura-logo {
+      inline-size: 12rem;
+    }
+
+    h2 {
+      font-size: clamp(2.15rem, 10vw, 3rem);
+      line-height: 1.08;
+    }
+
+    .aura-stage::before,
+    .aura-stage::after {
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+    }
+  }
+</style>

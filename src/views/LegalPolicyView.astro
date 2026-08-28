@@ -1,0 +1,96 @@
+---
+import Container from "../components/Container.astro";
+import Section from "../components/Section.astro";
+import type { Locale } from "../i18n/config";
+import type { RouteKey } from "../i18n/routes";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+  route: Extract<RouteKey, "privacy" | "cookies">;
+  title: string;
+  description: string;
+}
+
+const { locale, route, title, description } = Astro.props;
+---
+
+<SiteLayout
+  locale={locale}
+  route={route}
+  title={`${title} | LATYS`}
+  description={description}
+>
+  <Section id="page-intro" tone="contrast" spacing="compact">
+    <Container size="narrow">
+      <h1>{title}</h1>
+    </Container>
+  </Section>
+
+  <Section id="page-content" tone="default" spacing="compact">
+    <Container size="narrow">
+      <article class="legal-copy">
+        <slot />
+      </article>
+    </Container>
+  </Section>
+</SiteLayout>
+
+<style is:global>
+  .legal-copy {
+    color: var(--color-ink);
+  }
+
+  .legal-copy .policy-details {
+    margin-block-end: clamp(3rem, 7vw, 4.5rem);
+    padding-block-end: 2rem;
+    border-block-end: 0.0625rem solid var(--color-border);
+  }
+
+  .legal-copy .policy-details p {
+    margin-block: 0 0.35rem;
+  }
+
+  .legal-copy h2 {
+    margin-block: clamp(2.75rem, 6vw, 4rem) 1rem;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .legal-copy h2:first-of-type {
+    margin-block-start: 0;
+  }
+
+  .legal-copy p,
+  .legal-copy li {
+    color: var(--color-muted);
+  }
+
+  .legal-copy p {
+    margin-block-end: 1rem;
+  }
+
+  .legal-copy ul {
+    margin-block: 0.75rem 1.5rem;
+    padding-inline-start: 1.35rem;
+  }
+
+  .legal-copy li + li {
+    margin-block-start: 0.55rem;
+  }
+
+  .legal-copy a {
+    color: var(--color-accent-ink);
+    text-underline-offset: 0.18em;
+  }
+
+  .legal-copy strong {
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 36rem) {
+    .legal-copy {
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

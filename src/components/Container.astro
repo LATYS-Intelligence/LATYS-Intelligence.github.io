@@ -1,0 +1,28 @@
+---
+interface Props {
+  size?: "narrow" | "default" | "wide";
+}
+
+const { size = "default" } = Astro.props;
+---
+
+<div class="container" data-size={size}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    inline-size: 100%;
+    max-inline-size: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .container[data-size="narrow"] {
+    max-inline-size: 44rem;
+  }
+
+  .container[data-size="wide"] {
+    max-inline-size: 82rem;
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+type ApplicationIconName =
+  | "edge-ai"
+  | "remote-operations"
+  | "adaptive-connectivity"
+  | "temporary-networks"
+  | "mmwave-extension"
+  | "infrastructure-reduction"
+  | "mission-critical"
+  | "private-5g"
+  | "indoor-outdoor";
+
+interface Props {
+  name: ApplicationIconName;
+}
+
+const { name } = Astro.props;
+---
+
+{
+  name === "mmwave-extension" || name === "private-5g" ? (
+    <span
+      class="application-icon letter-icon"
+      aria-hidden="true"
+      style="display:grid;aspect-ratio:1;place-items:center;font-weight:760;letter-spacing:-0.08em;line-height:1"
+    >
+      {name === "private-5g" ? "5G" : "MM"}
+    </span>
+  ) : name === "infrastructure-reduction" ? (
+    <img
+      class="application-icon city-icon"
+      src="/assets/city.svg"
+      alt=""
+      aria-hidden="true"
+    />
+  ) : (
+    <svg
+      class="application-icon"
+      viewBox="0 0 48 48"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+  {
+    name === "edge-ai" && (
+      <g transform="scale(0.09375)" stroke-width="15">
+        <path d="M20 140C20 80 68 32 128 32c22 0 42 6 59 18 17-30 49-50 86-50 55 0 100 42 105 96 4-1 8-1 12-1 42 0 76 34 76 76 0 34-22 63-53 73" />
+        <path d="M20 140c0 40 26 74 62 88m36 8c8 2 17 4 27 4m222 0c18 0 35-4 50-12" />
+        <rect x="245" y="136" width="22" height="26" rx="6" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(45 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(90 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(135 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(180 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(225 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(270 256 232)" />
+        <rect x="245" y="136" width="22" height="26" rx="6" transform="rotate(315 256 232)" />
+        <circle cx="256" cy="232" r="66" />
+        <path d="M292 262a48 48 0 1 1 8-56M256 298v142" />
+        <circle cx="256" cy="462" r="20" />
+        <path d="m198 278-48 48h-42l-38 38" />
+        <circle cx="48" cy="386" r="20" />
+        <path d="M212 300v62l-40 40" />
+        <circle cx="150" cy="424" r="20" />
+        <path d="m314 278 48 48h42l38 38" />
+        <circle cx="464" cy="386" r="20" />
+        <path d="M300 300v62l40 40" />
+        <circle cx="362" cy="424" r="20" />
+      </g>
+    )
+  }
+
+  {
+    name === "remote-operations" && (
+      <>
+        <path d="M8 27h25l4 5v4H8zM13 27l3-7h12l5 7" />
+        <circle cx="15" cy="37" r="3" />
+        <circle cx="31" cy="37" r="3" />
+        <path d="M24 20v-7m0 0c3.2 0 5.8 2.6 5.8 5.8M24 8c6 0 10.8 4.8 10.8 10.8M11 15h5m-2.5-2.5V17.5" />
+      </>
+    )
+  }
+
+  {
+    name === "adaptive-connectivity" && (
+      <>
+        <path d="M24 17v20m-7 4h14m-11-4 4-9 4 9M19 19a7 7 0 0 1 10 0m-14-4a13 13 0 0 1 18 0" />
+        <circle cx="24" cy="21" r="2" />
+        <path d="M6 10h10m-4-4 4 4-4 4m30 0H32m4-4-4 4 4 4" />
+      </>
+    )
+  }
+
+  {
+    name === "temporary-networks" && (
+      <>
+        <path d="M15 18v22m-6 0h12m-9-6 3-8 3 8M10 18a7 7 0 0 1 10 0M7 14a11 11 0 0 1 16 0" />
+        <circle cx="34" cy="31" r="9" />
+        <path d="M34 26v5l3 2M30 8h8m-4 0v4" />
+      </>
+    )
+  }
+
+  {
+    name === "mission-critical" && (
+      <>
+        <path d="M24 6c5 4 10 5 15 6v10c0 10-6 17-15 21-9-4-15-11-15-21V12c5-1 10-2 15-6Z" />
+        <path d="M19 29a7 7 0 0 1 10 0m-13-5a11 11 0 0 1 16 0" />
+        <circle cx="24" cy="33" r="2" />
+      </>
+    )
+  }
+
+  {
+    name === "indoor-outdoor" && (
+      <>
+        <path d="M24 5 12 21h7L9 34h11v9h8v-9h11L29 21h7Z" />
+        <path d="M15 43h18" />
+      </>
+    )
+  }
+    </svg>
+  )
+}
+
+<style>
+  .application-icon {
+    display: block;
+    inline-size: 100%;
+    color: inherit;
+  }
+
+  svg.application-icon {
+    block-size: auto;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .letter-icon {
+    display: grid;
+    aspect-ratio: 1;
+    place-items: center;
+    font-family: Manrope Variable, Manrope, sans-serif;
+    font-size: inherit;
+    font-weight: 760;
+    letter-spacing: -0.08em;
+    line-height: 1;
+  }
+
+  .city-icon {
+    block-size: auto;
+    filter: var(--application-city-filter, none);
+    scale: 1.1;
+  }
+
+</style>

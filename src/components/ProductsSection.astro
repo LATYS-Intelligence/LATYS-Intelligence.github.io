@@ -1,0 +1,304 @@
+---
+import Container from "./Container.astro";
+import ButtonLink from "./ButtonLink.astro";
+import LogoMark from "./LogoMark.astro";
+import Section from "./Section.astro";
+import {
+  frontmatter as englishProducts,
+} from "../content/home/products.en.md";
+import {
+  frontmatter as frenchProducts,
+} from "../content/home/products.fr.md";
+import type { Locale } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
+
+interface Product {
+  kind: "focus" | "aura";
+  category: string;
+  name: "FOCUS" | "AURA";
+  tagline: string;
+  benefits: string[];
+  modules?: string[];
+}
+
+interface ProductsContent {
+  eyebrow: string;
+  heading: string;
+  introduction: string;
+  ctaLabel: string;
+  products: [Product, Product];
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = {
+  en: englishProducts as ProductsContent,
+  fr: frenchProducts as ProductsContent,
+} satisfies Record<Locale, ProductsContent>;
+const copy = content[locale];
+---
+
+<Section id="products" tone="contrast" spacing="spacious">
+  <Container size="wide">
+    <div class="products-section">
+      <header class="section-heading">
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h2>{copy.heading}</h2>
+        <p class="introduction">{copy.introduction}</p>
+      </header>
+
+      <div class="products-grid">
+        {
+          copy.products.map((product) => (
+            <article class="product-card" data-product={product.kind}>
+              <span class="product-glow" aria-hidden="true"></span>
+              <p class="product-category">{product.category}</p>
+              <h3 class="product-name">
+                <LogoMark />
+                <span class="product-wordmark">
+                  LATYS<strong>{product.name}</strong><sup>™</sup>
+                </span>
+              </h3>
+              <p class="tagline">{product.tagline}</p>
+              <ul class="benefits">
+                {product.benefits.map((benefit) => <li>{benefit}</li>)}
+              </ul>
+              {product.modules && (
+                <div class="modules">
+                  {product.modules.map((module) => <span>{module}</span>)}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="product-cta">
+        <ButtonLink
+          href={getLocalizedPath("solutions", locale)}
+          variant="inverse"
+        >
+          {copy.ctaLabel}
+        </ButtonLink>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .products-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .products-section::before {
+    position: absolute;
+    z-index: -1;
+    top: -12rem;
+    right: -14rem;
+    inline-size: 38rem;
+    block-size: 38rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgb(236 238 255 / 8%),
+      transparent 68%
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .section-heading {
+    max-inline-size: 49rem;
+    margin-block-end: clamp(3rem, 7vw, 5rem);
+  }
+
+  .eyebrow {
+    margin-block-end: 1rem;
+    color: var(--color-accent);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .section-heading h2 {
+    max-inline-size: 18ch;
+    margin-block-end: 1.5rem;
+  }
+
+  .introduction {
+    max-inline-size: 43rem;
+    margin: 0;
+    color: rgb(247 249 255 / 72%);
+    font-size: clamp(1rem, 2vw, 1.16rem);
+  }
+
+  .products-grid {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .product-card {
+    --product-color: var(--color-accent);
+
+    position: relative;
+    isolation: isolate;
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    overflow: hidden;
+    border: 0.0625rem solid rgb(255 158 103 / 36%);
+    border-radius: var(--radius-medium);
+    background:
+      linear-gradient(135deg, rgb(255 158 103 / 5%), transparent 54%),
+      rgb(2 9 35 / 62%);
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 16%);
+  }
+
+  .product-card[data-product="aura"] {
+    --product-color: var(--color-accent-light);
+
+    border-color: rgb(236 238 255 / 28%);
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 2%), transparent 48%),
+      linear-gradient(145deg, rgb(2 9 35 / 78%), rgb(16 31 90 / 72%));
+  }
+
+  .product-glow {
+    position: absolute;
+    z-index: -1;
+    top: -10rem;
+    right: -9rem;
+    inline-size: 24rem;
+    block-size: 24rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(255 158 103 / 22%), transparent 70%);
+    pointer-events: none;
+  }
+
+  .product-card[data-product="aura"] .product-glow {
+    background: radial-gradient(circle, rgb(236 238 255 / 13%), transparent 70%);
+  }
+
+  .product-category {
+    margin-block-end: 1.25rem;
+    color: rgb(247 249 255 / 58%);
+    font-family:
+      ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .product-name {
+    --logo-size: 2.25rem;
+    --color-logo: var(--color-on-dark);
+
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-block-end: 1.25rem;
+    color: var(--color-on-dark);
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    font-weight: 460;
+    letter-spacing: -0.03em;
+  }
+
+  .product-wordmark {
+    display: inline-flex;
+    align-items: flex-start;
+  }
+
+  .product-wordmark strong {
+    font-weight: 780;
+  }
+
+  .product-wordmark sup {
+    position: relative;
+    top: -0.08em;
+    margin-inline-start: 0.12em;
+    font-size: 0.5em;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .tagline {
+    margin-block-end: 1.5rem;
+    color: rgb(247 249 255 / 84%);
+    font-size: clamp(1rem, 1.8vw, 1.1rem);
+  }
+
+  .benefits {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    color: rgb(247 249 255 / 72%);
+    font-size: 0.93rem;
+    list-style: none;
+  }
+
+  .benefits li {
+    display: grid;
+    grid-template-columns: 0.45rem minmax(0, 1fr);
+    gap: 0.8rem;
+    align-items: baseline;
+  }
+
+  .benefits li::before {
+    inline-size: 0.4rem;
+    block-size: 0.4rem;
+    background: var(--product-color);
+    content: "";
+  }
+
+  .modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-block-start: 1.5rem;
+  }
+
+  .modules span {
+    padding: 0.45rem 0.72rem;
+    border: 0.0625rem solid rgb(236 238 255 / 34%);
+    border-radius: 0.5rem;
+    background: rgb(236 238 255 / 7%);
+    color: var(--color-accent-light);
+    font-family:
+      ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .product-cta {
+    display: flex;
+    justify-content: center;
+    margin-block-start: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .product-cta :global(.button) {
+    min-inline-size: 10rem;
+    border-color: rgb(255 158 103 / 68%);
+    background: var(--color-accent);
+    box-shadow:
+      0 0.75rem 2.25rem rgb(255 158 103 / 22%),
+      inset 0 0 0 0.0625rem rgb(255 255 255 / 20%);
+    color: var(--color-primary);
+  }
+
+  .product-cta :global(.button:hover) {
+    border-color: var(--color-on-dark);
+    background: var(--color-on-dark);
+  }
+
+  @media (min-width: 52rem) {
+    .products-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

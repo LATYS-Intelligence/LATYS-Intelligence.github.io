@@ -1,0 +1,78 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true"
+focusable="false" shape-rendering="geometricPrecision">
+  <g stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M84 37l32-19 32 19-32 19-32-19Z" />
+    <path d="M84 37l32 19v109l-32-19V37Z" />
+    <path d="M116 56l32-19v109l-32 19" />
+
+    <path d="M28 91l31-18 31 18-31 18-31-18Z" />
+    <path d="M28 91l31 18v72l-31-18V91Z" />
+    <path d="M59 109l31-18v72l-31 18" />
+
+    <path d="M136 96l39-23 39 23-39 23-39-23Z" />
+    <path d="M136 96l39 23v57l-39-23V96Z" />
+    <path d="M175 119l39-23v57l-39 23" />
+  </g>
+
+  <g stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+opacity="0.58">
+    <path d="M94 72l12 7v10l-12-7V72ZM94 99l12 7v10l-12-7V99ZM94 126l12 7v10l-12-7v-10Z" />
+    <path d="M126 76l12-7v10l-12 7V76ZM126 103l12-7v10l-12 7v-10ZM126 130l12-7v10l-12 7v-10Z" />
+    <path d="M38 112l11 6v10l-11-6v-10ZM38 139l11 6v10l-11-6v-10Z" />
+    <path d="M69 125l11-6v10l-11 6v-10ZM69 152l11-6v10l-11 6v-10Z" />
+    <path d="M147 116l12 7v10l-12-7v-10ZM147 141l12 7v10l-12-7v-10Z" />
+    <path d="M187 130l14-8v10l-14 8v-10ZM187 153l14-8v10l-14 8v-10Z" />
+  </g>
+</svg> -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true"
+  focusable="false" shape-rendering="geometricPrecision">
+  <defs>
+    <clipPath id="hideBehindForeground">
+      <path clip-rule="evenodd"
+        d="
+        M0 0H240V200H0Z
+        M59 73L90 91L90 163L59 181L28 163L28 91Z
+        M175 73L214 96L214 153L175 176L136 153L136 96Z
+      " />
+    </clipPath>
+  </defs>
+
+  <!-- Middle building (clipped where the two foreground buildings occlude it) -->
+  <g clip-path="url(#hideBehindForeground)">
+    <g stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M84 37l32-19 32 19-32 19-32-19Z" />
+      <path d="M84 37l32 19v109l-32-19V37Z" />
+      <path d="M116 56l32-19v109l-32 19" />
+    </g>
+    <g stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+      opacity="0.58">
+      <path d="M94 72l12 7v10l-12-7V72ZM94 99l12 7v10l-12-7V99ZM94 126l12 7v10l-12-7v-10Z" />
+      <path d="M126 76l12-7v10l-12 7V76ZM126 103l12-7v10l-12 7v-10ZM126 130l12-7v10l-12 7v-10Z" />
+    </g>
+  </g>
+
+  <!-- Left building (foreground, unclipped) -->
+  <g stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 91l31-18 31 18-31 18-31-18Z" />
+    <path d="M28 91l31 18v72l-31-18V91Z" />
+    <path d="M59 109l31-18v72l-31 18" />
+  </g>
+  <g stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.58">
+    <path d="M38 112l11 6v10l-11-6v-10ZM38 139l11 6v10l-11-6v-10Z" />
+    <path d="M69 125l11-6v10l-11 6v-10ZM69 152l11-6v10l-11 6v-10Z" />
+  </g>
+
+  <!-- Right building (foreground, unclipped) -->
+  <g stroke="#f7f9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M136 96l39-23 39 23-39 23-39-23Z" />
+    <path d="M136 96l39 23v57l-39-23V96Z" />
+    <path d="M175 119l39-23v57l-39 23" />
+  </g>
+  <g stroke="#f7f9ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+    opacity="0.58">
+    <path d="M147 116l12 7v10l-12-7v-10ZM147 141l12 7v10l-12-7v-10Z" />
+    <path d="M187 130l14-8v10l-14 8v-10ZM187 153l14-8v10l-14 8v-10Z" />
+  </g>
+</svg>

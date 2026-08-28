@@ -1,0 +1,282 @@
+---
+import Container from "./Container.astro";
+import BrandText from "./BrandText.astro";
+import Section from "./Section.astro";
+import {
+  frontmatter as englishEdge,
+} from "../content/home/edge.en.md";
+import {
+  frontmatter as frenchEdge,
+} from "../content/home/edge.fr.md";
+import type { Locale } from "../i18n/config";
+
+interface EdgePillar {
+  title: string;
+  body: string;
+}
+
+interface EdgeContent {
+  eyebrow: string;
+  heading: string;
+  introduction: string;
+  pillars: [EdgePillar, EdgePillar, EdgePillar];
+  compatibility: string;
+  conclusion: string;
+  signalPathLabel: string;
+  signalPath: [string, string, string];
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = {
+  en: englishEdge as EdgeContent,
+  fr: frenchEdge as EdgeContent,
+} satisfies Record<Locale, EdgeContent>;
+const copy = content[locale];
+---
+
+<Section id="edge" tone="contrast" spacing="spacious">
+  <Container size="wide">
+    <div class="edge-section">
+      <header class="intro-grid">
+        <div>
+          <p class="eyebrow">{copy.eyebrow}</p>
+          <h2><BrandText text={copy.heading} /></h2>
+        </div>
+        <div class="intro-copy">
+          <p class="introduction"><BrandText text={copy.introduction} /></p>
+          <p class="conclusion"><BrandText text={copy.conclusion} /></p>
+        </div>
+      </header>
+
+      <ol class="signal-path" aria-label={copy.signalPathLabel}>
+        {copy.signalPath.map((label, index) => (
+          <li>
+            <span>0{index + 1}</span>
+            <strong>{label}</strong>
+          </li>
+        ))}
+      </ol>
+
+      <div class="pillar-grid">
+        {copy.pillars.map((pillar, index) => (
+          <article class="pillar">
+            <span class="marker" aria-hidden="true"></span>
+            <p class="pillar-number">0{index + 1}</p>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="compatibility">{copy.compatibility}</p>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .edge-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .edge-section::before {
+    position: absolute;
+    z-index: -1;
+    top: -8rem;
+    right: -10rem;
+    inline-size: 34rem;
+    block-size: 34rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(255 158 103 / 10%), transparent 68%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .intro-grid {
+    display: grid;
+    gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: end;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-block-end: 1.25rem;
+    color: var(--color-accent);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    inline-size: 1.5rem;
+    block-size: 0.125rem;
+    background: currentColor;
+    content: "";
+  }
+
+  h2 {
+    max-inline-size: 13ch;
+    margin: 0;
+    font-size: clamp(2.6rem, 6vw, 5.25rem);
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  .intro-copy {
+    padding-inline-start: clamp(1.25rem, 3vw, 2.5rem);
+    border-inline-start: 0.125rem solid var(--color-accent);
+  }
+
+  .introduction {
+    max-inline-size: 38rem;
+    margin: 0;
+    color: rgb(247 249 255 / 82%);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+  }
+
+  .conclusion {
+    max-inline-size: 38rem;
+    margin: 1.25rem 0 0;
+    color: rgb(247 249 255 / 58%);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .signal-path {
+    display: grid;
+    gap: 1rem;
+    margin: clamp(4rem, 8vw, 6.5rem) 0 1rem;
+    padding: 1.25rem;
+    border-block: 0.0625rem solid rgb(247 249 255 / 12%);
+    list-style: none;
+  }
+
+  .signal-path li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    min-inline-size: 0;
+    color: var(--color-on-dark);
+  }
+
+  .signal-path li:not(:last-child)::after {
+    color: var(--color-accent);
+    content: "↓";
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .signal-path span {
+    color: var(--color-accent);
+    font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .signal-path strong {
+    min-inline-size: 0;
+    font-size: 0.82rem;
+    font-weight: 680;
+    letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+  }
+
+  .pillar-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .pillar {
+    position: relative;
+    min-block-size: 15rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    overflow: hidden;
+    border: 0.0625rem solid rgb(247 249 255 / 8%);
+    border-radius: var(--radius-medium);
+    background: var(--color-purple);
+    box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 12%);
+  }
+
+  .marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    inline-size: 100%;
+    block-size: 0.1875rem;
+    background: var(--color-accent);
+    transform: scaleX(0.18);
+    transform-origin: left;
+  }
+
+  .pillar-number {
+    margin: 0 0 clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-accent);
+    font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .pillar h3 {
+    margin-block-end: 0.85rem;
+    color: var(--color-on-dark);
+  }
+
+  .pillar > p:last-child {
+    max-inline-size: 25rem;
+    margin: 0;
+    color: rgb(247 249 255 / 62%);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .compatibility {
+    margin: 1rem 0 0;
+    padding: 1.25rem clamp(1.25rem, 3vw, 2rem);
+    border: 0.0625rem solid rgb(247 249 255 / 10%);
+    border-radius: var(--radius-small);
+    background: rgb(255 255 255 / 4%);
+    color: rgb(247 249 255 / 58%);
+    font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 48rem) {
+    .signal-path {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .signal-path li {
+      grid-template-columns: 2rem minmax(0, 1fr) auto;
+    }
+
+    .signal-path li:not(:last-child)::after {
+      content: "→";
+    }
+
+    .pillar-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 56rem) {
+    .intro-grid {
+      grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+    }
+  }
+</style>

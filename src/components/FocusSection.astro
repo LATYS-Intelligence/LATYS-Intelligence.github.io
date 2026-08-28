@@ -1,0 +1,312 @@
+---
+import type { FocusCopy } from "../i18n/pages/solutions";
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+
+interface Props {
+  copy: FocusCopy;
+}
+
+const { copy } = Astro.props;
+---
+
+<Section id="focus" tone="contrast" spacing="spacious">
+  <Container size="wide">
+    <div class="focus-section">
+      <header class="focus-heading">
+        <div class="focus-logo-lockup">
+          <img
+            class="focus-logo"
+            src="/assets/latysFOCUSlogo.svg"
+            width="2600"
+            height="700"
+            alt="LATYS FOCUS™"
+          />
+          <sup class="logo-trademark" aria-hidden="true">™</sup>
+        </div>
+        <h1>
+          {copy.heading.map((line) => <span>{line}</span>)}
+        </h1>
+      </header>
+
+      <div class="focus-story">
+        <div class="product-stage">
+          <span class="product-glow" aria-hidden="true"></span>
+          <img
+            class="product-image"
+            src="/assets/latysFocusTwoBoxes.png"
+            width="1728"
+            height="801"
+            alt={copy.imageAlt}
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+
+        <div class="focus-details">
+          <p class="introduction">{copy.introduction}</p>
+
+          <ol class="capability-list">
+            {
+              copy.capabilities.map((capability, index) => (
+                <li>
+                  <span class="capability-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2>{capability.title}</h2>
+                    <p>{capability.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .focus-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .focus-section::before {
+    position: absolute;
+    z-index: -1;
+    top: -15rem;
+    left: -18rem;
+    inline-size: 42rem;
+    block-size: 42rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgb(236 238 255 / 8%),
+      transparent 68%
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .focus-heading {
+    position: relative;
+    z-index: 2;
+    margin-block-end: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .focus-logo-lockup {
+    display: inline-flex;
+    align-items: flex-start;
+    margin-block-end: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .focus-logo {
+    flex: none;
+    inline-size: clamp(13rem, 24vw, 20rem);
+    block-size: auto;
+  }
+
+  .logo-trademark {
+    flex: none;
+    margin-block-start: clamp(1rem, 1.9vw, 1.55rem);
+    margin-inline-start: 0.18rem;
+    color: var(--color-on-dark);
+    font-size: clamp(0.55rem, 0.8vw, 0.72rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  h1 {
+    max-inline-size: 76rem;
+    margin: 0;
+    color: var(--color-on-dark);
+    font-size: clamp(2.5rem, 5.2vw, 4.65rem);
+    font-weight: 620;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  h1 span {
+    display: block;
+  }
+
+  h1 span:last-child {
+    color: var(--color-accent);
+  }
+
+  .focus-story {
+    display: grid;
+    gap: clamp(3rem, 7vw, 6rem);
+    align-items: start;
+  }
+
+  .product-stage {
+    position: relative;
+    min-inline-size: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 0.0625rem solid rgb(236 238 255 / 12%);
+    border-radius: var(--radius-medium);
+    background:
+      linear-gradient(145deg, rgb(236 238 255 / 4%), transparent 52%),
+      rgb(2 9 35 / 30%);
+    box-shadow: 0 2rem 5rem rgb(0 0 0 / 18%);
+  }
+
+  .product-stage::before,
+  .product-stage::after {
+    position: absolute;
+    z-index: 2;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-color: rgb(255 158 103 / 65%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .product-stage::before {
+    top: 1.25rem;
+    left: 1.25rem;
+    border-block-start: 0.0625rem solid;
+    border-inline-start: 0.0625rem solid;
+  }
+
+  .product-stage::after {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    border-block-end: 0.0625rem solid;
+    border-inline-end: 0.0625rem solid;
+  }
+
+  .product-glow {
+    position: absolute;
+    z-index: 0;
+    right: -8%;
+    bottom: -18%;
+    inline-size: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgb(255 158 103 / 17%),
+      rgb(236 238 255 / 7%) 38%,
+      transparent 70%
+    );
+    filter: blur(0.25rem);
+    pointer-events: none;
+  }
+
+  .product-image {
+    position: relative;
+    z-index: 1;
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: none;
+    object-fit: cover;
+    object-position: right center;
+  }
+
+  .focus-details {
+    min-inline-size: 0;
+  }
+
+  .introduction {
+    margin: 0 0 clamp(2.5rem, 6vw, 4rem);
+    color: rgb(247 249 255 / 82%);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.75;
+  }
+
+  .capability-list {
+    margin: 0;
+    padding: 0;
+    border-block-end: 0.0625rem solid rgb(247 249 255 / 13%);
+    list-style: none;
+  }
+
+  .capability-list li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-block: clamp(1.5rem, 3vw, 2rem);
+    border-block-start: 0.0625rem solid rgb(247 249 255 / 13%);
+  }
+
+  .capability-number {
+    padding-block-start: 0.2rem;
+    color: var(--color-accent);
+    font-family:
+      ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .capability-list h2 {
+    margin-block-end: 0.65rem;
+    color: var(--color-on-dark);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .capability-list p {
+    max-inline-size: 34rem;
+    margin: 0;
+    color: rgb(247 249 255 / 62%);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 52rem) {
+    .focus-story {
+      grid-template-columns: minmax(0, 1.12fr) minmax(22rem, 0.88fr);
+    }
+
+    h1 span {
+      white-space: nowrap;
+    }
+
+    .product-stage {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+
+  @media (max-width: 32rem) {
+    .focus-heading {
+      margin-block-end: 3rem;
+    }
+
+    .focus-logo-lockup {
+      margin-block-end: 1.75rem;
+    }
+
+    .focus-logo {
+      inline-size: 12rem;
+    }
+
+    h1 {
+      font-size: clamp(2.15rem, 11vw, 3rem);
+      line-height: 1.08;
+    }
+
+    h1 span + span {
+      margin-block-start: 0.2em;
+    }
+
+    .product-stage {
+      aspect-ratio: 1.3 / 1;
+    }
+
+    .product-stage::before,
+    .product-stage::after {
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+    }
+  }
+</style>

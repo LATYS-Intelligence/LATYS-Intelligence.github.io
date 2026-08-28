@@ -1,0 +1,97 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary" | "inverse";
+}
+
+const { href, variant = "primary" } = Astro.props;
+---
+
+<a class="button" data-variant={variant} href={href}>
+  <span><slot /></span>
+  <svg viewBox="0 0 18 18" aria-hidden="true">
+    <path d="M4 9h9M9.5 5.5 13 9l-3.5 3.5" />
+  </svg>
+</a>
+
+<style>
+  .button {
+    display: inline-flex;
+    min-block-size: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.25rem;
+    border: 0.0625rem solid transparent;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .button:hover {
+    transform: translateY(-0.125rem);
+  }
+
+  .button[data-variant="primary"] {
+    background: var(--color-primary);
+    color: var(--color-on-dark);
+  }
+
+  .button[data-variant="primary"]:hover {
+    background: var(--color-purple);
+  }
+
+  .button[data-variant="secondary"] {
+    border-color: rgb(7 20 72 / 24%);
+    background: transparent;
+    color: var(--color-primary);
+  }
+
+  .button[data-variant="secondary"]:hover {
+    border-color: var(--color-primary);
+  }
+
+  .button[data-variant="inverse"] {
+    background: var(--color-on-dark);
+    color: var(--color-primary);
+  }
+
+  .button[data-variant="inverse"]:hover {
+    background: var(--color-accent);
+  }
+
+  svg {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+    transition: transform var(--transition-fast);
+  }
+
+  .button:hover svg {
+    transform: translateX(0.15rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button,
+    svg {
+      transition: none;
+    }
+
+    .button:hover,
+    .button:hover svg {
+      transform: none;
+    }
+  }
+</style>

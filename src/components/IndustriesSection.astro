@@ -1,0 +1,218 @@
+---
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+import {
+  frontmatter as englishIndustries,
+} from "../content/home/industries.en.md";
+import {
+  frontmatter as frenchIndustries,
+} from "../content/home/industries.fr.md";
+import type { Locale } from "../i18n/config";
+
+interface Industry {
+  title: string;
+  body: string;
+}
+
+interface IndustriesContent {
+  eyebrow: string;
+  heading: string;
+  industries: Industry[];
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = {
+  en: englishIndustries as IndustriesContent,
+  fr: frenchIndustries as IndustriesContent,
+} satisfies Record<Locale, IndustriesContent>;
+const copy = content[locale];
+const indexedIndustries = copy.industries.map((industry, index) => ({
+  ...industry,
+  index,
+}));
+const industryRows = [
+  indexedIndustries.slice(0, 3),
+  indexedIndustries.slice(3, 6),
+  indexedIndustries.slice(6, 7),
+];
+---
+
+<Section id="capabilities" tone="default">
+  <Container size="wide">
+    <header class="section-heading">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2>{copy.heading}</h2>
+    </header>
+
+    <div class="industry-rows">
+      {
+        industryRows.map((row) => (
+          <div class="industry-row" data-single={row.length === 1}>
+            {row.map((industry) => {
+              const titleId = `industry-${locale}-${industry.index + 1}`;
+              const descriptionId = `${titleId}-description`;
+
+              return (
+                <article
+                  class="industry-card"
+                  tabindex="0"
+                  aria-labelledby={titleId}
+                  aria-describedby={descriptionId}
+                >
+                  <h3 id={titleId}>{industry.title}</h3>
+                  <p class="industry-description" id={descriptionId}>{industry.body}</p>
+                </article>
+              );
+            })}
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .section-heading {
+    display: grid;
+    max-inline-size: 50rem;
+    margin-block-end: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .eyebrow {
+    margin-block-end: 1.25rem;
+    color: var(--color-accent-ink);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .section-heading h2 {
+    max-inline-size: 14ch;
+    margin-block-end: 0;
+  }
+
+  .industry-rows,
+  .industry-row {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .industry-card {
+    display: flex;
+    min-inline-size: 0;
+    min-block-size: 18rem;
+    flex-direction: column;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    overflow: hidden;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-medium);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .industry-card h3 {
+    margin-block: auto 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .industry-description {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 48rem) and (max-width: 63.999rem) {
+    .industry-rows {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .industry-row {
+      display: contents;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .industry-row {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .industry-card {
+      flex: 1 1 0;
+    }
+
+    .industry-row[data-single="true"] .industry-card {
+      flex: 0 1 calc((100% - 2rem) / 3);
+    }
+  }
+
+  @media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+    .industry-card {
+      block-size: 18rem;
+      transition:
+        flex-grow 360ms cubic-bezier(0.22, 1, 0.36, 1),
+        flex-basis 360ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .industry-description {
+      max-block-size: 0;
+      overflow: clip;
+      opacity: 0;
+      transform: translateY(0.75rem);
+      transition:
+        max-block-size 360ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 220ms ease,
+        transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .industry-card:is(:hover, :focus-visible) {
+      flex-grow: 2;
+      border-color: rgb(8 115 143 / 36%);
+      box-shadow: 0 1.5rem 4rem rgb(7 20 72 / 14%);
+    }
+
+    .industry-card:is(:hover, :focus-visible) .industry-description {
+      max-block-size: 10rem;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .industry-row[data-single="true"] .industry-card:is(:hover, :focus-visible) {
+      flex-basis: 100%;
+    }
+
+    .industry-rows:has(.industry-card:hover)
+      .industry-card:focus-visible:not(:hover) {
+      flex-grow: 1;
+      border-color: var(--color-border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .industry-rows:has(.industry-card:hover)
+      .industry-row[data-single="true"]
+      .industry-card:focus-visible:not(:hover) {
+      flex-basis: calc((100% - 2rem) / 3);
+    }
+
+    .industry-rows:has(.industry-card:hover)
+      .industry-card:focus-visible:not(:hover)
+      .industry-description {
+      max-block-size: 0;
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .industry-card,
+    .industry-description {
+      transition: none;
+    }
+  }
+</style>

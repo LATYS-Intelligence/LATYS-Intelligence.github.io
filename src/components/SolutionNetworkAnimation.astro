@@ -1,0 +1,452 @@
+<div class="solution-network-animation" aria-hidden="true">
+  <svg viewBox="0 0 1000 820">
+    <defs>
+      <linearGradient id="solution-plane-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#dff8ff" stop-opacity="0.18" />
+        <stop offset="0.5" stop-color="#59d8ff" stop-opacity="0.1" />
+        <stop offset="1" stop-color="#8ca5ff" stop-opacity="0.05" />
+      </linearGradient>
+      <pattern id="solution-plane-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+        <path d="M28 0H0V28" fill="none" stroke="#9eeaff" stroke-opacity="0.22" stroke-width="1" />
+      </pattern>
+      <linearGradient id="solution-foundation-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe0c7" stop-opacity="0.18" />
+        <stop offset="0.5" stop-color="#ff8a3d" stop-opacity="0.12" />
+        <stop offset="1" stop-color="#ff633d" stop-opacity="0.06" />
+      </linearGradient>
+      <pattern id="solution-foundation-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+        <path d="M28 0H0V28" fill="none" stroke="#ffd1ad" stroke-opacity="0.24" stroke-width="1" />
+      </pattern>
+      <radialGradient id="solution-halo-fill">
+        <stop offset="0" stop-color="#59d8ff" stop-opacity="0.42" />
+        <stop offset="1" stop-color="#59d8ff" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="solution-foundation-halo-fill">
+        <stop offset="0" stop-color="#ff8a3d" stop-opacity="0.46" />
+        <stop offset="1" stop-color="#ff8a3d" stop-opacity="0" />
+      </radialGradient>
+
+      <filter
+        id="solution-logo-bloom"
+        x="-60%"
+        y="-60%"
+        width="220%"
+        height="220%"
+        color-interpolation-filters="sRGB"
+      >
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.5294 0 0 0 0 0.8941 0 0 0 0 1 0 0 0 1 0"
+        />
+        <feGaussianBlur stdDeviation="10" />
+      </filter>
+      <filter id="solution-logo-cyan" color-interpolation-filters="sRGB">
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.5294 0 0 0 0 0.8941 0 0 0 0 1 0 0 0 1 0"
+        />
+      </filter>
+      <filter id="solution-asset-orange" color-interpolation-filters="sRGB">
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1 0 0 0 0 0.6196 0 0 0 0 0.4039 0 0 0 1 0"
+        />
+      </filter>
+      <filter
+        id="solution-asset-bloom"
+        x="-15%"
+        y="-15%"
+        width="130%"
+        height="130%"
+        color-interpolation-filters="sRGB"
+      >
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1 0 0 0 0 0.6196 0 0 0 0 0.4039 0 0 0 1 0"
+        />
+        <feGaussianBlur stdDeviation="9" />
+      </filter>
+
+      <path id="solution-route-city" pathLength="1" d="M409 368 350 332 291 368 232 332 173 296" />
+      <path id="solution-route-logistics" pathLength="1" d="M602 363 661 328 720 363 779 328 838 293 897 258" />
+      <path id="solution-route-data" pathLength="1" d="M597 481 656 516 597 552 656 588 715 553 774 589" />
+      <path id="solution-route-edge" pathLength="1" d="M404 486 345 522 404 557 345 593 286 558 227 594" />
+    </defs>
+
+    <g class="scene">
+      <g class="routes">
+        <use class="route-line" href="#solution-route-city"></use>
+        <use class="route-line" href="#solution-route-logistics"></use>
+        <use class="route-line" href="#solution-route-data"></use>
+        <use class="route-line" href="#solution-route-edge"></use>
+        <use class="route-tracer" href="#solution-route-city"></use>
+        <use class="route-tracer" href="#solution-route-logistics"></use>
+        <use class="route-tracer" href="#solution-route-data"></use>
+        <use class="route-tracer" href="#solution-route-edge"></use>
+      </g>
+
+      <g class="asset asset-city">
+        <image class="asset-bloom city-bloom" href="/assets/city.svg" x="50" y="55" width="322.5" height="268.5" filter="url(#solution-asset-bloom)" />
+        <image href="/assets/city.svg" x="50" y="55" width="322.5" height="268.5" filter="url(#solution-asset-orange)" />
+      </g>
+      <g class="asset asset-logistics">
+        <image class="asset-bloom logistics-bloom" href="/assets/logistics.svg" x="590" y="55" width="352.5" height="196.5" filter="url(#solution-asset-bloom)" />
+        <image href="/assets/logistics.svg" x="590" y="55" width="352.5" height="196.5" filter="url(#solution-asset-orange)" />
+      </g>
+      <g class="asset asset-data">
+        <image class="asset-bloom data-bloom" href="/assets/data-center.svg" x="630" y="515" width="315" height="262.5" filter="url(#solution-asset-bloom)" />
+        <image href="/assets/data-center.svg" x="630" y="515" width="315" height="262.5" filter="url(#solution-asset-orange)" />
+      </g>
+      <g class="asset asset-edge">
+        <image class="asset-bloom edge-bloom" href="/assets/edgeCompute.svg" x="50" y="550" width="210" height="210" filter="url(#solution-asset-bloom)" />
+        <image href="/assets/edgeCompute.svg" x="50" y="550" width="210" height="210" filter="url(#solution-asset-orange)" />
+      </g>
+
+      <g class="central-composition" transform="translate(285 230) scale(0.7)">
+        <ellipse
+          class="solution-foundation-halo"
+          cx="312"
+          cy="310"
+          rx="290"
+          ry="160"
+          fill="url(#solution-foundation-halo-fill)"
+        />
+        <ellipse class="solution-halo" cx="318" cy="277" rx="210" ry="116" fill="url(#solution-halo-fill)" />
+
+        <g class="solution-foundation-layer">
+          <path class="solution-foundation-plane" d="M35.64 282.76 318.49 110.22 587.19 268.62 302.93 448.22Z" />
+          <path class="solution-foundation-grid" d="M35.64 282.76 318.49 110.22 587.19 268.62 302.93 448.22Z" />
+        </g>
+
+        <g class="solution-logo-signal" transform="matrix(0.47 0.28 -0.53 0.32 313 191)">
+          <image
+            class="solution-logo-bloom"
+            href="/assets/latysLogo.svg"
+            width="222"
+            height="207"
+            preserveAspectRatio="xMidYMid meet"
+            filter="url(#solution-logo-bloom)"
+          />
+          <image
+            href="/assets/latysLogo.svg"
+            width="222"
+            height="207"
+            preserveAspectRatio="xMidYMid meet"
+            filter="url(#solution-logo-cyan)"
+          />
+        </g>
+
+        <g class="solution-layer" style="--index: 0; --start-x: -76px; --start-y: -82px; --rest-y: -15px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+        <g class="solution-layer" style="--index: 1; --start-x: -48px; --start-y: -54px; --rest-y: -9px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+        <g class="solution-layer" style="--index: 2; --start-x: -20px; --start-y: -26px; --rest-y: -3px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+        <g class="solution-layer" style="--index: 3; --start-x: 20px; --start-y: 26px; --rest-y: 3px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+        <g class="solution-layer" style="--index: 4; --start-x: 48px; --start-y: 54px; --rest-y: 9px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+        <g class="solution-layer" style="--index: 5; --start-x: 76px; --start-y: 82px; --rest-y: 15px;">
+          <path class="solution-plane" d="M116 252 316 130l190 112-201 127Z" />
+          <path class="solution-grid" d="M116 252 316 130l190 112-201 127Z" />
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .solution-network-animation {
+    --solution-cycle: 22s;
+
+    display: grid;
+    inline-size: 100%;
+    min-block-size: 100%;
+    place-items: center;
+    background-color: var(--color-primary, #071448);
+  }
+
+  svg {
+    inline-size: 100%;
+    overflow: visible;
+  }
+
+  .scene {
+    animation: solution-scene var(--solution-cycle) linear infinite;
+  }
+
+  .solution-layer {
+    opacity: 0;
+    transform: translate(var(--start-x), var(--start-y));
+    transform-origin: 310px 255px;
+    animation: solution-assemble var(--solution-cycle) cubic-bezier(0.45, 0, 0.2, 1) infinite;
+    animation-delay: calc(var(--index) * 80ms);
+  }
+
+  .solution-plane {
+    fill: url(#solution-plane-fill);
+    stroke: #87e4ff;
+    stroke-opacity: 0.7;
+    stroke-width: 1.25;
+  }
+
+  .solution-grid {
+    fill: url(#solution-plane-grid);
+    stroke: none;
+  }
+
+  .solution-foundation-layer,
+  .solution-foundation-halo,
+  .solution-halo,
+  .solution-logo-signal {
+    opacity: 0;
+  }
+
+  .solution-foundation-layer {
+    animation: solution-foundation var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .solution-foundation-plane {
+    fill: url(#solution-foundation-fill);
+    stroke: #ffad76;
+    stroke-opacity: 0.8;
+    stroke-width: 1.25;
+  }
+
+  .solution-foundation-grid {
+    fill: url(#solution-foundation-grid);
+    stroke: none;
+  }
+
+  .solution-foundation-halo {
+    animation: solution-foundation-halo var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .solution-halo {
+    transform-origin: center;
+    animation: solution-halo var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .solution-logo-signal {
+    animation: solution-logo-signal var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .solution-logo-bloom {
+    opacity: 0.72;
+  }
+
+  .route-line,
+  .route-tracer {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .route-line {
+    stroke-width: 1.75;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: solution-route var(--solution-cycle) ease-out infinite;
+  }
+
+  .route-tracer {
+    opacity: 0;
+    stroke-width: 3.25;
+    stroke-dasharray: 0.09 0.91;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 0.45rem var(--color-accent));
+    animation: solution-tracer var(--solution-cycle) ease-out infinite;
+  }
+
+  .asset {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .asset-city {
+    animation: solution-city var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .asset-logistics {
+    animation: solution-logistics var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .asset-data {
+    animation: solution-data var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .asset-edge {
+    animation: solution-edge var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .asset-bloom {
+    opacity: 0;
+  }
+
+  .city-bloom {
+    animation: solution-city-bloom var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .logistics-bloom {
+    animation: solution-logistics-bloom var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .data-bloom {
+    animation: solution-data-bloom var(--solution-cycle) ease-in-out infinite;
+  }
+
+  .edge-bloom {
+    animation: solution-edge-bloom var(--solution-cycle) ease-in-out infinite;
+  }
+
+  @keyframes solution-scene {
+    0%, 2.1% { opacity: 0; }
+    2.5%, 86% { opacity: 1; }
+    93%, 100% { opacity: 0; }
+  }
+
+  @keyframes solution-assemble {
+    0%, 2.1% {
+      opacity: 0;
+      transform: translate(var(--start-x), var(--start-y));
+    }
+    5.7% { opacity: 0.28; }
+    17.7% {
+      opacity: 0.86;
+      transform: translate(0, var(--rest-y));
+    }
+    23%, 100% {
+      opacity: 1;
+      transform: translate(0, var(--rest-y));
+    }
+  }
+
+  @keyframes solution-halo {
+    0%, 18% {
+      opacity: 0;
+      transform: scale(0.78);
+    }
+    23%, 100% {
+      opacity: 0.72;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes solution-logo-signal {
+    0%, 18% { opacity: 0; }
+    23%, 100% { opacity: 0.92; }
+  }
+
+  @keyframes solution-foundation {
+    0%, 23% { opacity: 0; }
+    31%, 100% { opacity: 0.82; }
+  }
+
+  @keyframes solution-foundation-halo {
+    0%, 25% { opacity: 0; }
+    31%, 100% { opacity: 0.68; }
+  }
+
+  @keyframes solution-route {
+    0%, 31% { stroke-dashoffset: 1; }
+    42%, 100% { stroke-dashoffset: 0; }
+  }
+
+  @keyframes solution-tracer {
+    0%, 31% {
+      opacity: 0;
+      stroke-dashoffset: 1;
+    }
+    31.5% { opacity: 1; }
+    41.5% {
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+    42%, 100% {
+      opacity: 0;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes solution-city {
+    0%, 42% { opacity: 0; transform: scale(0.96); }
+    49%, 100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes solution-logistics {
+    0%, 48% { opacity: 0; transform: scale(0.96); }
+    55%, 100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes solution-data {
+    0%, 54% { opacity: 0; transform: scale(0.96); }
+    61%, 100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes solution-edge {
+    0%, 60% { opacity: 0; transform: scale(0.96); }
+    67%, 100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes solution-city-bloom {
+    0%, 46% { opacity: 0; }
+    49%, 100% { opacity: 0.62; }
+  }
+
+  @keyframes solution-logistics-bloom {
+    0%, 52% { opacity: 0; }
+    55%, 100% { opacity: 0.62; }
+  }
+
+  @keyframes solution-data-bloom {
+    0%, 58% { opacity: 0; }
+    61%, 100% { opacity: 0.62; }
+  }
+
+  @keyframes solution-edge-bloom {
+    0%, 64% { opacity: 0; }
+    67%, 100% { opacity: 0.62; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene,
+    .solution-layer,
+    .solution-halo,
+    .solution-logo-signal,
+    .solution-foundation-layer,
+    .solution-foundation-halo,
+    .route-line,
+    .asset,
+    .asset-bloom {
+      animation: none;
+    }
+
+    .scene { opacity: 1; }
+    .solution-layer {
+      opacity: 0.72;
+      transform: translate(0, var(--rest-y));
+    }
+    .solution-halo { opacity: 0.42; transform: scale(1); }
+    .solution-logo-signal { opacity: 0.75; }
+    .solution-logo-bloom { opacity: 0.42; }
+    .solution-foundation-layer { opacity: 0.64; }
+    .solution-foundation-halo { opacity: 0.36; }
+    .route-line { stroke-dashoffset: 0; }
+    .route-tracer { display: none; }
+    .asset { opacity: 1; transform: scale(1); }
+    .asset-bloom { opacity: 0.45; }
+  }
+</style>

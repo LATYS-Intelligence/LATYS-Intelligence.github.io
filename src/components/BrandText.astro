@@ -1,0 +1,25 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const brandTerm = "Layer-0 Wireless™";
+const segments = text.split(/(Layer-0 Wireless™)/gi);
+---
+
+{
+  segments.map((segment) =>
+    segment.toLocaleLowerCase() === brandTerm.toLocaleLowerCase() ? (
+      <span class="brand-term">{segment}</span>
+    ) : (
+      segment
+    )
+  )
+}
+
+<style>
+  .brand-term {
+    color: var(--color-accent);
+  }
+</style>

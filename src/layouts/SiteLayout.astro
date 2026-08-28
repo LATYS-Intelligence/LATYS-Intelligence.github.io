@@ -1,0 +1,72 @@
+---
+import "@fontsource-variable/manrope";
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import { htmlLanguage, type Locale } from "../i18n/config";
+import { getLocalizedPath, type RouteKey } from "../i18n/routes";
+import { sharedCopy } from "../i18n/shared";
+
+interface Props {
+  locale: Locale;
+  route: RouteKey;
+  title: string;
+  description: string;
+}
+
+const { locale, route, title, description } = Astro.props;
+const copy = sharedCopy[locale];
+const canonical = new URL(getLocalizedPath(route, locale), Astro.site);
+const englishUrl = new URL(getLocalizedPath(route, "en"), Astro.site);
+const frenchUrl = new URL(getLocalizedPath(route, "fr"), Astro.site);
+---
+
+<!doctype html>
+<html lang={htmlLanguage[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#071448" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en-CA" href={englishUrl} />
+    <link rel="alternate" hreflang="fr-CA" href={frenchUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{copy.skipToContent}</a>
+    <Navbar locale={locale} currentRoute={route} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: fixed;
+    z-index: 100;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 750;
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform var(--transition-fast);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+</style>

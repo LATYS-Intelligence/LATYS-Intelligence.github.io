@@ -1,0 +1,30 @@
+---
+import AuraSection from "../components/AuraSection.astro";
+import FocusAtGlanceSection from "../components/FocusAtGlanceSection.astro";
+import FocusAuraLayer0Section from "../components/FocusAuraLayer0Section.astro";
+import FocusSection from "../components/FocusSection.astro";
+import MmWaveCaseStudySection from "../components/MmWaveCaseStudySection.astro";
+import type { Locale } from "../i18n/config";
+import { solutionsCopy } from "../i18n/pages/solutions";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = solutionsCopy[locale];
+---
+
+<SiteLayout
+  locale={locale}
+  route="solutions"
+  title={copy.meta.title}
+  description={copy.meta.description}
+>
+  <FocusSection copy={copy.focus} />
+  <FocusAtGlanceSection copy={copy.atGlance} />
+  <AuraSection copy={copy.aura} />
+  <FocusAuraLayer0Section copy={copy.focusAuraLayer0} />
+  <MmWaveCaseStudySection copy={copy.mmWaveCaseStudy} />
+</SiteLayout>

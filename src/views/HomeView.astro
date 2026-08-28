@@ -1,0 +1,178 @@
+---
+import ButtonLink from "../components/ButtonLink.astro";
+import ApplicationsSection from "../components/ApplicationsSection.astro";
+import BrandText from "../components/BrandText.astro";
+import Container from "../components/Container.astro";
+import EdgeSection from "../components/EdgeSection.astro";
+import HeroLayers from "../components/HeroLayers.astro";
+import IndustriesSection from "../components/IndustriesSection.astro";
+import LayerZeroSection from "../components/LayerZeroSection.astro";
+import ProductsSection from "../components/ProductsSection.astro";
+import Section from "../components/Section.astro";
+import SolutionSection from "../components/SolutionSection.astro";
+import {
+  Content as EnglishHeroHeading,
+  frontmatter as englishHero,
+} from "../content/home/hero.en.md";
+import {
+  Content as FrenchHeroHeading,
+  frontmatter as frenchHero,
+} from "../content/home/hero.fr.md";
+import type { Locale } from "../i18n/config";
+import { homeCopy } from "../i18n/pages/home";
+import { getLocalizedPath } from "../i18n/routes";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = homeCopy[locale];
+
+interface HeroFrontmatter {
+  eyebrow: string;
+  lead: string;
+  primaryCta: string;
+  secondaryCta: string;
+  note: string;
+}
+
+const heroSources = {
+  en: {
+    Heading: EnglishHeroHeading,
+    content: englishHero as HeroFrontmatter,
+  },
+  fr: {
+    Heading: FrenchHeroHeading,
+    content: frenchHero as HeroFrontmatter,
+  },
+} satisfies Record<
+  Locale,
+  {
+    Heading: typeof EnglishHeroHeading;
+    content: HeroFrontmatter;
+  }
+>;
+
+const { Heading: HeroHeading, content: hero } = heroSources[locale];
+---
+
+<SiteLayout
+  locale={locale}
+  route="home"
+  title={copy.meta.title}
+  description={copy.meta.description}
+>
+  <Section id="hero" tone="contrast" spacing="spacious">
+    <Container size="wide">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><BrandText text={hero.eyebrow} /></p>
+          <div class="hero-heading">
+            <HeroHeading />
+          </div>
+          <p class="hero-body">{hero.lead}</p>
+          <div class="hero-actions">
+            <ButtonLink
+              href={getLocalizedPath("solutions", locale)}
+              variant="inverse"
+            >
+              {hero.primaryCta}
+            </ButtonLink>
+            <a class="hero-link" href="#layer-zero">{hero.secondaryCta}</a>
+          </div>
+          <p class="hero-note">{hero.note}</p>
+        </div>
+        <HeroLayers />
+      </div>
+    </Container>
+  </Section>
+
+  <LayerZeroSection copy={copy.layerZero} />
+
+  <EdgeSection locale={locale} />
+
+  <SolutionSection locale={locale} />
+
+  <IndustriesSection locale={locale} />
+
+  <ApplicationsSection locale={locale} />
+
+  <ProductsSection locale={locale} />
+</SiteLayout>
+
+<style>
+  .hero-grid {
+    display: grid;
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-inline-size: 42rem;
+  }
+
+  .eyebrow {
+    margin-block-end: 1.25rem;
+    color: var(--color-accent);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .hero-heading :global(h1) {
+    max-inline-size: 11ch;
+    margin-block-end: 1.5rem;
+  }
+
+  .hero-heading :global(.accent) {
+    color: var(--color-accent);
+  }
+
+  .hero-body {
+    max-inline-size: 37rem;
+    margin-block-end: 2rem;
+    color: rgb(247 249 255 / 68%);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    min-block-size: 3rem;
+    align-items: center;
+    color: var(--color-accent);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-underline-offset: 0.35rem;
+  }
+
+  .hero-note {
+    max-inline-size: 58rem;
+    margin: clamp(3rem, 7vw, 4.5rem) 0 0;
+    color: rgb(247 249 255 / 52%);
+    font-family:
+      ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 56rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.04fr) minmax(24rem, 0.96fr);
+    }
+  }
+</style>

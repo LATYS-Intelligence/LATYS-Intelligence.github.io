@@ -1,0 +1,227 @@
+---
+import type { MmWaveCaseStudyCopy } from "../i18n/pages/solutions";
+import BrandText from "./BrandText.astro";
+import Container from "./Container.astro";
+import Section from "./Section.astro";
+
+interface Props {
+  copy: MmWaveCaseStudyCopy;
+}
+
+const { copy } = Astro.props;
+---
+
+<Section id="mmwave-case-study" tone="paper" spacing="spacious">
+  <Container size="wide">
+    <div class="case-study">
+      <header class="case-study-header">
+        <div class="heading-block">
+          <p class="eyebrow">{copy.eyebrow}</p>
+          <h2>{copy.heading}</h2>
+        </div>
+
+        <div class="copy-block">
+          <p class="introduction">{copy.introduction}</p>
+          <div class="solution-callout">
+            <h3>{copy.solutionHeading}</h3>
+            <p><BrandText text={copy.solutionBody} /></p>
+          </div>
+        </div>
+      </header>
+
+      <div class="media-grid">
+        <figure class="media-card">
+          <div class="media-frame">
+            <img
+              src="/assets/mmWaveImage.png"
+              width="637"
+              height="625"
+              alt={copy.imageAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>{copy.imageLabel}</figcaption>
+        </figure>
+
+        <figure class="media-card">
+          <div class="media-frame">
+            <video
+              data-mmwave-video
+              width="1266"
+              height="648"
+              aria-label={copy.videoAriaLabel}
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source src="/assets/focusAuraVideo.mp4" type="video/mp4" />
+              {copy.videoFallback}
+            </video>
+          </div>
+          <figcaption><BrandText text={copy.videoLabel} /></figcaption>
+        </figure>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script>
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const syncMmWaveVideos = () => {
+    document
+      .querySelectorAll<HTMLVideoElement>("[data-mmwave-video]")
+      .forEach((video) => {
+        if (motionPreference.matches) {
+          video.removeAttribute("autoplay");
+          video.pause();
+          return;
+        }
+
+        video.setAttribute("autoplay", "");
+        void video.play().catch(() => undefined);
+      });
+  };
+
+  syncMmWaveVideos();
+  motionPreference.addEventListener("change", syncMmWaveVideos);
+</script>
+
+<style>
+  .case-study-header {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .heading-block,
+  .copy-block {
+    min-inline-size: 0;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1rem;
+    color: var(--color-purple);
+    font-size: 0.72rem;
+    font-weight: 760;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    inline-size: 1.5rem;
+    block-size: 0.125rem;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  h2 {
+    max-inline-size: 15ch;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  .introduction {
+    max-inline-size: 44rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 2vw, 1.22rem);
+    line-height: 1.75;
+  }
+
+  .solution-callout {
+    max-inline-size: 44rem;
+    margin-block-start: clamp(1.75rem, 4vw, 2.5rem);
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-inline-start: 0.2rem solid var(--color-accent);
+    background: rgb(255 255 255 / 58%);
+  }
+
+  .solution-callout h3 {
+    margin: 0 0 0.65rem;
+    color: var(--color-ink);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 720;
+    letter-spacing: -0.025em;
+  }
+
+  .solution-callout p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.96rem;
+    line-height: 1.7;
+  }
+
+  .media-grid {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    margin-block-start: clamp(3.5rem, 8vw, 6rem);
+    align-items: start;
+  }
+
+  .media-card {
+    min-inline-size: 0;
+    margin: 0;
+    padding: clamp(0.75rem, 1.8vw, 1.1rem);
+    border: 0.0625rem solid rgb(16 31 90 / 10%);
+    border-radius: var(--radius-medium);
+    background: rgb(255 255 255 / 78%);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .media-frame {
+    overflow: hidden;
+    border-radius: calc(var(--radius-medium) - 0.45rem);
+    background: var(--color-primary);
+  }
+
+  .media-frame img,
+  .media-frame video {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  figcaption {
+    margin-block-start: 0.9rem;
+    padding-inline: 0.2rem;
+    color: var(--color-ink);
+    font-size: 0.76rem;
+    font-weight: 720;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 58rem) {
+    .case-study-header {
+      grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
+    }
+
+    .media-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.92fr);
+    }
+  }
+
+  @media (max-width: 35.99rem) {
+    h2 {
+      font-size: clamp(2.25rem, 11vw, 3.2rem);
+      line-height: 1.06;
+    }
+
+    .media-card {
+      padding: 0.65rem;
+    }
+  }
+</style>

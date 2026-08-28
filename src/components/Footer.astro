@@ -1,0 +1,235 @@
+---
+import Container from "./Container.astro";
+import LogoMark from "./LogoMark.astro";
+import type { Locale } from "../i18n/config";
+import { getLocalizedPath } from "../i18n/routes";
+import { sharedCopy } from "../i18n/shared";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = sharedCopy[locale].footer;
+const solutionsPath = getLocalizedPath("solutions", locale);
+---
+
+<footer class="footer">
+  <Container size="wide">
+    <div class="footer-layout">
+      <nav class="footer-links" aria-label={copy.navigationLabel}>
+        <section class="footer-column" aria-labelledby="footer-products">
+          <h2 id="footer-products">{copy.productHeading}</h2>
+          <ul>
+            <li><a href={solutionsPath}>LATYS FOCUS<sup>™</sup></a></li>
+            <li><a href={`${solutionsPath}#aura`}>LATYS AURA<sup>™</sup></a></li>
+            <li><a href={getLocalizedPath("faqs", locale)}>{copy.faqs}</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column" aria-labelledby="footer-get-started">
+          <h2 id="footer-get-started">{copy.getStartedHeading}</h2>
+          <ul>
+            <li>
+              <a href={getLocalizedPath("privacy", locale)}>{copy.privacy}</a>
+            </li>
+            <li>
+              <a href={getLocalizedPath("cookies", locale)}>{copy.cookies}</a>
+            </li>
+          </ul>
+        </section>
+      </nav>
+
+      <div class="footer-contact">
+        <a
+          class="footer-logo"
+          href={getLocalizedPath("home", locale)}
+          aria-label="LATYS"
+        >
+          <LogoMark />
+        </a>
+
+        <div class="contact-copy">
+          <p class="office-label">{copy.officeHeading}</p>
+          <address>
+            {copy.addressLine1}<br />
+            {copy.addressLine2}
+          </address>
+          <ul class="contact-links" aria-label={copy.contactLabel}>
+            <li><a href="tel:+14383810660">(438) 381-0660</a></li>
+            <li><a href="mailto:info@latys.ca">info@latys.ca</a></li>
+            <li><a href="mailto:support@latys.ca">support@latys.ca</a></li>
+          </ul>
+          <p class="copyright">{copy.copyright}</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    --color-logo: rgb(0 6 37 / 70%);
+    --logo-size: clamp(7.5rem, 13vw, 10.5rem);
+
+    padding-block: clamp(4rem, 8vw, 6.5rem) clamp(2.5rem, 5vw, 4rem);
+    border-block-start: 0.0625rem solid rgb(255 255 255 / 10%);
+    background: var(--color-primary);
+    color: var(--color-on-dark);
+  }
+
+  .footer-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.65fr);
+    gap: clamp(4rem, 9vw, 8rem);
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 6vw, 6rem);
+  }
+
+  .footer-column h2 {
+    margin: 0 0 1.5rem;
+    color: rgb(247 249 255 / 46%);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .footer-column ul {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-column a {
+    color: rgb(247 249 255 / 78%);
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-column a:hover,
+  .footer-column a:focus-visible {
+    color: var(--color-on-dark);
+  }
+
+  .footer-column sup {
+    position: relative;
+    top: -0.18em;
+    margin-inline-start: 0.12em;
+    font-size: 0.58em;
+    line-height: 0;
+  }
+
+  .footer-contact {
+    display: grid;
+    justify-items: end;
+    text-align: end;
+  }
+
+  .footer-logo {
+    display: block;
+    color: var(--color-logo);
+    opacity: 0.78;
+    transition: opacity var(--transition-fast);
+  }
+
+  .footer-logo:hover,
+  .footer-logo:focus-visible {
+    opacity: 1;
+  }
+
+  .contact-copy {
+    margin-block-start: clamp(2rem, 4vw, 3rem);
+    color: rgb(247 249 255 / 60%);
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .office-label {
+    margin: 0 0 0.3rem;
+    color: rgb(247 249 255 / 84%);
+    font-weight: 700;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.45rem 1rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-links li {
+    position: relative;
+  }
+
+  .contact-links li + li::before {
+    position: absolute;
+    inset-inline-start: -0.55rem;
+    color: rgb(247 249 255 / 22%);
+    content: "·";
+  }
+
+  .contact-links a {
+    color: rgb(247 249 255 / 74%);
+    text-decoration-color: rgb(247 249 255 / 22%);
+    text-underline-offset: 0.22em;
+    transition:
+      color var(--transition-fast),
+      text-decoration-color var(--transition-fast);
+  }
+
+  .contact-links a:hover,
+  .contact-links a:focus-visible {
+    color: var(--color-on-dark);
+    text-decoration-color: var(--color-accent);
+  }
+
+  .copyright {
+    margin: 1.25rem 0 0;
+    color: rgb(247 249 255 / 42%);
+  }
+
+  @media (max-width: 47.99rem) {
+    .footer-layout {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .footer-contact {
+      justify-items: start;
+      text-align: start;
+    }
+
+    .contact-links {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 27.99rem) {
+    .footer-links {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-column a,
+    .footer-logo,
+    .contact-links a {
+      transition: none;
+    }
+  }
+</style>
