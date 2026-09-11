@@ -36,16 +36,12 @@ const english: FaqsCopy = {
       answer: "FOCUS is designed for demanding industrial environments. Its IP-rated enclosure supports operation in dusty and high-humidity conditions, with an operating temperature range of –40°C to +60°C, making it suitable for both indoor and outdoor deployments.",
     },
     {
-      question: "What Wi-Fi vendors is the FOCUS compatible with?",
-      answer: "FOCUS works at Layer 1 (radio frequency), so it works with any Wi-Fi system—and even other wireless technologies—with zero configuration.",
-    },
-    {
-      question: "What are the licensing costs?",
-      answer: "None. The only ongoing costs are a few dollars of electricity per month.",
+      question: "What vendors is the FOCUS compatible with?",
+      answer: "FOCUS operates at Layer 0, so it works with any Wi-Fi or mobile network—and even other wireless technologies—with zero configuration.",
     },
     {
       question: "What frequency does the FOCUS operate in?",
-      answer: "5 GHz, with 6 GHz operation coming soon.",
+      answer: "Operating frequency is a design parameter of the FOCUS. Commercial units are currently available for 5 GHz and select other sub-7 GHz frequency bands. FOCUS can also be designed for additional frequency bands based on application and deployment requirements.",
     },
     {
       question: "Will this also help signal from my client devices to my access points (upstream)?",
@@ -60,8 +56,8 @@ const english: FaqsCopy = {
       answer: "4.7 Watts.",
     },
     {
-      question: "Can a FOCUS replace a wireless access point?",
-      answer: "Yes.",
+      question: "Can FOCUS reduce the amount of wireless infrastructure required?",
+      answer: "Yes. By intelligently redirecting and extending existing RF signals, FOCUS can improve coverage and connectivity without requiring additional active network infrastructure. Depending on the deployment, this can reduce the number of access points, radios, repeaters, or other network nodes required to achieve the desired coverage.",
     },
   ],
 };
@@ -94,12 +90,8 @@ export const faqsCopy = {
         answer: "FOCUS fonctionne à la couche 1 (radiofréquence). Il est donc compatible avec n’importe quel système Wi-Fi, et même avec d’autres technologies sans fil, sans aucune configuration.",
       },
       {
-        question: "Quels sont les coûts de licence?",
-        answer: "Aucun. Les seuls coûts récurrents se limitent à quelques dollars d’électricité par mois.",
-      },
-      {
         question: "Sur quelle fréquence le FOCUS fonctionne-t-il?",
-        answer: "5 GHz, avec la prise en charge de la bande 6 GHz bientôt disponible.",
+        answer: "La fréquence de fonctionnement est un paramètre de conception du FOCUS. Les unités commerciales sont actuellement offertes pour la bande de 5 GHz et certaines autres bandes de fréquences inférieures à 7 GHz. Le FOCUS peut également être conçu pour d’autres bandes de fréquences en fonction des exigences de l’application et du déploiement.",
       },
       {
         question: "Cela améliorera-t-il également le signal de mes appareils clients vers mes points d’accès (liaison montante)?",
@@ -114,8 +106,8 @@ export const faqsCopy = {
         answer: "4,7 watts.",
       },
       {
-        question: "Un FOCUS peut-il remplacer un point d’accès sans fil?",
-        answer: "Oui.",
+        question: "Le FOCUS peut-il réduire la quantité d’infrastructure sans fil requise?",
+        answer: "Oui. En redirigeant et en prolongeant intelligemment les signaux RF existants, FOCUS peut améliorer la couverture et la connectivité sans nécessiter d’infrastructure réseau active supplémentaire. Selon le déploiement, cela peut réduire le nombre de points d’accès, de radios, de répéteurs ou d’autres nœuds de réseau nécessaires pour obtenir la couverture souhaitée.",
       },
     ],
   },

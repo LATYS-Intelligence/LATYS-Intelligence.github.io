@@ -5,6 +5,7 @@ import FocusAuraLayer0Section from "../components/FocusAuraLayer0Section.astro";
 import FocusSection from "../components/FocusSection.astro";
 import MmWaveCaseStudySection from "../components/MmWaveCaseStudySection.astro";
 import type { Locale } from "../i18n/config";
+import { homeCopy } from "../i18n/pages/home";
 import { solutionsCopy } from "../i18n/pages/solutions";
 import SiteLayout from "../layouts/SiteLayout.astro";
 
@@ -14,6 +15,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const copy = solutionsCopy[locale];
+const osiStack = homeCopy[locale].layerZero;
 ---
 
 <SiteLayout
@@ -25,6 +27,6 @@ const copy = solutionsCopy[locale];
   <FocusSection copy={copy.focus} />
   <FocusAtGlanceSection copy={copy.atGlance} />
   <AuraSection copy={copy.aura} />
-  <FocusAuraLayer0Section copy={copy.focusAuraLayer0} />
+  <FocusAuraLayer0Section copy={copy.focusAuraLayer0} osiStack={osiStack} />
   <MmWaveCaseStudySection copy={copy.mmWaveCaseStudy} />
 </SiteLayout>

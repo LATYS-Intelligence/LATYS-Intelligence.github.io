@@ -1,14 +1,17 @@
 ---
+import type { LayerZeroCopy } from "../i18n/pages/home";
 import type { FocusAuraLayer0Copy } from "../i18n/pages/solutions";
 import BrandText from "./BrandText.astro";
 import Container from "./Container.astro";
+import OsiStack from "./OsiStack.astro";
 import Section from "./Section.astro";
 
 interface Props {
   copy: FocusAuraLayer0Copy;
+  osiStack: Pick<LayerZeroCopy, "stackLabel" | "layers">;
 }
 
-const { copy } = Astro.props;
+const { copy, osiStack } = Astro.props;
 ---
 
 <Section id="focus-aura-layer-0" tone="purple" spacing="spacious">
@@ -82,16 +85,8 @@ const { copy } = Astro.props;
         }
       </ol>
 
-      <div class="osi-stack-diagram-wrap">
-        <img
-          class="osi-stack-diagram"
-          src="/assets/layer0OSIstack.png"
-          width="1552"
-          height="719"
-          alt="Traditional seven-layer OSI model with the LATYS Layer 0 environment beneath the physical layer"
-          loading="lazy"
-          decoding="async"
-        />
+      <div class="osi-stack-wrap">
+        <OsiStack stackLabel={osiStack.stackLabel} layers={osiStack.layers} />
       </div>
     </div>
   </Container>
@@ -362,17 +357,13 @@ const { copy } = Astro.props;
     line-height: 1.72;
   }
 
-  .osi-stack-diagram-wrap {
-    display: grid;
-    margin-block-start: clamp(3.5rem, 8vw, 6rem);
-    padding: clamp(1.5rem, 4vw, 3rem) clamp(0.75rem, 3vw, 2rem);
-    place-items: center;
-  }
+  .osi-stack-wrap {
+    --osi-label-color: rgb(236 238 255 / 72%);
 
-  .osi-stack-diagram {
-    display: block;
-    inline-size: min(88%, 54rem);
-    block-size: auto;
+    inline-size: 100%;
+    max-inline-size: 32.25rem;
+    margin-block-start: clamp(3.5rem, 8vw, 6rem);
+    margin-inline: auto;
   }
 
   @keyframes signal-flow {
