@@ -1,6 +1,5 @@
 ---
 import Container from "./Container.astro";
-import LogoMark from "./LogoMark.astro";
 import type { Locale } from "../i18n/config";
 import {
   getLocalizedPath,
@@ -26,8 +25,11 @@ const copy = sharedCopy[locale];
         href={getLocalizedPath("home", locale)}
         aria-label="LATYS"
       >
-        <LogoMark />
-        <span>LATYS</span>
+        <img
+          class="brand-logo"
+          src="/assets/Latys_Logo_Horizontal_Light.svg"
+          alt=""
+        />
       </a>
       <button
         class="menu-toggle"
@@ -131,9 +133,6 @@ const copy = sharedCopy[locale];
 
 <style>
   .navbar {
-    --color-logo: var(--color-on-dark);
-    --logo-size: 3rem;
-
     position: sticky;
     z-index: 20;
     top: 0;
@@ -160,14 +159,14 @@ const copy = sharedCopy[locale];
   .brand {
     position: relative;
     z-index: 2;
-    color: var(--color-on-dark);
-    font-size: 1.08rem;
-    font-weight: 760;
-    letter-spacing: 0.22em;
-    line-height: 1;
-    text-decoration: none;
     display: flex;
     align-items: center;
+  }
+
+  .brand-logo {
+    display: block;
+    inline-size: auto;
+    block-size: 3rem;
   }
 
   .menu {
